@@ -52,6 +52,8 @@ try{
         .setColor('#FFB6C1')
         let msgEmbed = await message.channel.send(embed)
         msgEmbed.react('👍')
+    } else if(command == 'servers'){
+        client.commands.get('servers').execute(message, args);
     } 
 } catch (err){
     message.channel.send('Invalid or incomplete command. Try `+help` for more info.\n`' + err + '`');
