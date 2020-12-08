@@ -4,9 +4,6 @@ const client = new Discord.Client({partials: ["MESSAGE", "CHANNEL", "REACTION"]}
 const prefix = '+';
 const fs = require('fs');
 var discordservers = [];
-client.guilds.forEach(g => {
-discordservers.push(g.name); // use g.id for each server's id, or you can use g.name -- id: g.id
-})
 const command = require('./command');
 client.commands = new Discord.Collection();
 
