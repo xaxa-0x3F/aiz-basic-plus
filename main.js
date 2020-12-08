@@ -89,4 +89,4 @@ client.on('guildMemberAdd', guildMember =>{
 });
 
 //keep at end
-client.login(config.token);
+client.login(process.new.AISBASICPLUS_TOKEN);
