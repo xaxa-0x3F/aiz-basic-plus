@@ -1,11 +1,8 @@
 const Discord = require('discord.js');
-
+//const config = require('./config.json');
 const client = new Discord.Client({partials: ["MESSAGE", "CHANNEL", "REACTION"]});
-
 const prefix = '+';
-
 const fs = require('fs');
-
 client.commands = new Discord.Collection();
 
 const commandFiles = fs.readdirSync('./commands/').filter(file => file.endsWith('.js'));
@@ -92,4 +89,4 @@ client.on('guildMemberAdd', guildMember =>{
 });
 
 //keep at end
-client.login('Nzg0OTk0NTU3NDg5MTg0Nzc5.X8xZJg.yRf9_qL2hVGZ1kwUME6Ee8BXyeA');
+client.login(config.token);
