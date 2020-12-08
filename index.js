@@ -55,7 +55,7 @@ try{
         msgEmbed.react('👍')
     } else if(command == 'servers'){
         let discordservers = [];
-        client.guilds.forEach(g => {
+        client.guilds.cache(g => {
             discordservers.push(g.name); // use g.id for each server's id, or you can use g.name -- id: g.id
         })
         message.channel.send(`${discordservers.join('\n')}`);
