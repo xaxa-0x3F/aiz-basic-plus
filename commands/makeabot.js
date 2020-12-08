@@ -10,8 +10,5 @@ module.exports = {
             message.channel.send('You can not kick members loser');
         } */
         message.channel.send('Check out this channel for how to make a bot like me ;)\nhttps://www.youtube.com/channel/UC08G-UJT58SbkdmcOYyOQVw');
-        
-        //message.channel.send("You don't have permissions to use this command. Here take this role and try again.");
-        //message.member.roles.add(role).catch(console.error);
     }
 }

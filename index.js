@@ -13,6 +13,11 @@ for(const file of commandFiles){
 
 client.once('ready', ()=> {
     console.log("AisBasic+ is online!");
+    command(client, 'servers', message => {
+        client.guilds.cache.forEach((guild) =>{
+            console.log(guild)
+        });
+    });
 });
 
 client.on('message', async message =>{
@@ -51,7 +56,7 @@ try{
         .setColor('#FFB6C1')
         let msgEmbed = await message.channel.send(embed)
         msgEmbed.react('👍')
-    }
+    } 
 } catch (err){
     message.channel.send('Invalid or incomplete command. Try `+help` for more info.\n`' + err + '`');
 } 
