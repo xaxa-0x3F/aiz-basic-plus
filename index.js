@@ -14,11 +14,6 @@ for(const file of commandFiles){
 
 client.on('ready', ()=> {
     console.log("AisBasic+ is online!");
-    command(client, 'servers', message => {
-        client.guilds.cache.forEach((guild) =>{
-            console.log(guild)
-        });
-    });
 });
 
 client.on('message', async message =>{
@@ -58,6 +53,11 @@ try{
         let msgEmbed = await message.channel.send(embed)
         msgEmbed.react('👍')
     } 
+    command(client, 'servers', message => {
+        client.guilds.cache.forEach((guild) =>{
+            console.log(guild);
+        });
+    });
 } catch (err){
     message.channel.send('Invalid or incomplete command. Try `+help` for more info.\n`' + err + '`');
 } 

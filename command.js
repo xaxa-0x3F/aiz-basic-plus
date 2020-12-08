@@ -4,6 +4,7 @@ module.exports = (client, aliases, callback) => {
     if (typeof aliases === 'string'){
         aliases = [aliases]
     }
+    
     client.on('message', (message) =>{
         const { content } = message
 
@@ -15,5 +16,5 @@ module.exports = (client, aliases, callback) => {
                 callback(message)
             }
         })
-    });
+    })
 }
