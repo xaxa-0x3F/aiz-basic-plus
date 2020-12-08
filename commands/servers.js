@@ -1,11 +1,7 @@
 module.exports = {
     name: 'servers',
     description: "this displays how many servers AisBasic+ is in! :)",
-    execute(message, args, client){
-        var discordservers = [];
-        client.guilds.forEach(g => {
-        discordservers.push(g.name); // use g.id for each server's id, or you can use g.name -- id: g.id
-        })
+    execute(message, args, guilds){
         message.channel.send(`${discordservers.join('\n')}`);
     }
 }
