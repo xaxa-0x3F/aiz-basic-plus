@@ -53,11 +53,6 @@ try{
         let msgEmbed = await message.channel.send(embed)
         msgEmbed.react('👍')
     } 
-    command(client, 'servers', message => {
-        client.guilds.cache.forEach((guild) =>{
-            console.log(guild);
-        });
-    });
 } catch (err){
     message.channel.send('Invalid or incomplete command. Try `+help` for more info.\n`' + err + '`');
 } 
