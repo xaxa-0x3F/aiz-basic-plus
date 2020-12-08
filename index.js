@@ -54,7 +54,7 @@ try{
         let msgEmbed = await message.channel.send(embed)
         msgEmbed.react('👍')
     } else if(command == 'servers'){
-        var discordservers = [];
+        let discordservers = [];
         client.guilds.forEach(g => {
             discordservers.push(g.name); // use g.id for each server's id, or you can use g.name -- id: g.id
         })
