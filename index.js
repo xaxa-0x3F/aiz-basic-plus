@@ -1,10 +1,12 @@
 const Discord = require('discord.js');
-//const config = require('./config.json');
+const config = require('./config.json');
 const client = new Discord.Client({partials: ["MESSAGE", "CHANNEL", "REACTION"]});
 const prefix = '+';
 const fs = require('fs');
 var discordservers = [];
 const command = require('./command');
+//const firstMessage = require('./first-message');
+
 client.commands = new Discord.Collection();
 
 const commandFiles = fs.readdirSync('./commands/').filter(file => file.endsWith('.js'));
@@ -31,8 +33,9 @@ client.on('ready', ()=> {
             message.channel.send('deleting as many messages as I can ❤');
         } else {
             return;
-        }
-    });
+    }
+    
+});
 
     /*command(client, 'status', message =>{
         const content = message.content.replace('!status', '');
@@ -88,6 +91,8 @@ try{
         client.commands.get('inviteme').execute(message, args);
     } else if(command == 'abbey'){
         client.commands.get('abbey').execute(message, args);
+    } else if(command == 'rolldice'){
+        client.commands.get('rolldice').execute(message, args);
     }
 } catch (err){
     message.channel.send('Invalid or incomplete command. Try `+help` for more info.\n`' + err + '`');
