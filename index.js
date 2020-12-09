@@ -59,7 +59,9 @@ try{
             discordservers.push(g.name); // use g.id for each server's id, or you can use g.name -- id: g.id
         })
         message.channel.send(`${discordservers.join('\n')}`);
-    } 
+    } else if(command == 'inviteme'){
+        client.commands.get('inviteme').execute(message, args);
+    }
 } catch (err){
     message.channel.send('Invalid or incomplete command. Try `+help` for more info.\n`' + err + '`');
 } 
