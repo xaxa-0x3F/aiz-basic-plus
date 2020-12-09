@@ -20,7 +20,7 @@ module.exports = {
         //.setImage('https://pa1.narvii.com/6518/5354d7ecc11e93741984c1ca103f37b5eecca047_hq.gif')
         .setFooter('More help here~>\nhttps://discord.gg/bR4R4PE6a4');
         
-        const fun = Discord.MessageEmbed()
+        const fun = new Discord.MessageEmbed()
         .setColor('#FFB6C1')
         .setTitle('Moderation Commands')
         .setURL('https://www.youtube.com/channel/UC7Rlc68ImIV32Y95xLmTSpA?view_as=subscribera')
