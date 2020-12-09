@@ -93,7 +93,12 @@ try{
         client.commands.get('abbey').execute(message, args);
     } else if(command == 'rolldice'){
         client.commands.get('rolldice').execute(message, args);
-    }
+    } else if (message.content == 'muteAll') {
+        let channel = message.member.voiceChannel;
+        for (let member of channel.members) {
+            member[1].setMute(true)
+        }
+     }
 } catch (err){
     message.channel.send('Invalid or incomplete command. Try `+help` for more info.\n`' + err + '`');
 } 
