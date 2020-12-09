@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "discord.js": "^12.5.1",
+    "discord.js-pagination": "^1.0.3",
     "ms": "^2.1.2"
   }
 }
