@@ -20,8 +20,8 @@ module.exports = {
             if(!reaction.message.guild) return;
             if(!reaction.message.channel.id == channel){
                 if(reaction.emoji.name === memberEmoji){
-                    await reaction.message.guild.members.chache.get(user.id).roles.add(memberRole);
-                    await reaction.message.guild.members.chache.get(user.id).roles.remove(newbieRole);
+                    await reaction.message.guild.members.cache.get(user.id).roles.add(memberRole);
+                    await reaction.message.guild.members.cache.get(user.id).roles.remove(newbieRole);
                 }
             } else {
                 return;
@@ -34,7 +34,7 @@ module.exports = {
             if(!reaction.message.guild) return;
             if(!reaction.message.channel.id == channel){
                 if(reaction.emoji.name === memberEmoji){
-                    await reaction.message.guild.members.chache.get(user.id).roles.remove(memberRole);
+                    await reaction.message.guild.members.cache.get(user.id).roles.remove(memberRole);
                 }
             } else {
                 return;
