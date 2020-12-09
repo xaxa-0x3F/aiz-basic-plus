@@ -18,12 +18,16 @@ client.on('ready', ()=> {
 
     client.user.setPresence({
         activity: {
-            name: '+help',
+            name: '+help ❤',
             type: "WATCHING",
         }
     });
 
-    command(client, 'status', message =>{
+    command(client, 'help', (message)=> {
+        
+    });
+
+    /*command(client, 'status', message =>{
         const content = message.content.replace('!status', '');
         const content2 = message.content.replace('!status', '');
 
@@ -33,7 +37,7 @@ client.on('ready', ()=> {
                 type: content2,
             }
         });
-    });
+    }); */
 });
 
 client.on('message', async message =>{
