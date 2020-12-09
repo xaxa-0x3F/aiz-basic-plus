@@ -6,12 +6,6 @@ const fs = require('fs');
 var discordservers = [];
 const command = require('./command');
 client.commands = new Discord.Collection();
-client.user.setPresence({
-    activity: {
-        name: '+help',
-        type: 0,
-    }
-});
 
 const commandFiles = fs.readdirSync('./commands/').filter(file => file.endsWith('.js'));
 for(const file of commandFiles){
@@ -21,6 +15,13 @@ for(const file of commandFiles){
 
 client.on('ready', ()=> {
     console.log("AisBasic+ is online!");
+
+    client.user.setPresence({
+        activity: {
+            name: '+help',
+            type: 0,
+        }
+    });
 
     command(client, 'status', message =>{
         const content = message.content.replace('!status', '');
