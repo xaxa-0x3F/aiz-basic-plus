@@ -17,21 +17,25 @@ module.exports = {
         client.on('messageReactionAdd', async (reaction, user) => {
             if(reaction.message.partial) await reaction.message.fetch();
             if(user.bot) return;
-            if(!reaction.message.channel.id === channel){
+            if(!reaction.message.channel.id == channel){
                 if(reaction.emoji.name === memberEmoji){
                     await reaction.message.guild.members.chache.get(user.id).roles.add(memberRole);
                     await reaction.message.guild.members.chache.get(user.id).roles.remove(newbieRole);
                 }
+            } else {
+                return;
             }
         });
 
         client.on('messageReactionRemove', async (reaction, user) => {
             if(reaction.message.partial) await reaction.message.fetch();
             if(user.bot) return;
-            if(!reaction.message.channel.id === channel){
+            if(!reaction.message.channel.id == channel){
                 if(reaction.emoji.name === memberEmoji){
                     await reaction.message.guild.members.chache.get(user.id).roles.remove(memberRole);
                 }
+            } else {
+                return;
             }
         });
     }
