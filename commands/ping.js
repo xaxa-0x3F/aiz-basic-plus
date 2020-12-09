@@ -1,5 +1,4 @@
 const Discord = require('discord.js');
-const Discord = require('discord.js');
 module.exports = {
     name: 'inviteme',
     description: "How to invite.",
