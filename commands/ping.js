@@ -1,8 +1,4 @@
-module.exports = {
-    name: 'ping',
-    description: "this is a ping command",
-    execute(message, args){
-        const Discord = require('discord.js');
+const Discord = require('discord.js');
 module.exports = {
     name: 'inviteme',
     description: "How to invite.",
@@ -19,7 +15,5 @@ module.exports = {
         .setFooter('hehheheheheh<3');
 
         message.channel.send(newEmbed);
-    }
-}
-    }
+        }
 }
