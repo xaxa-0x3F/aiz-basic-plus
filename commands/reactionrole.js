@@ -4,6 +4,7 @@ module.exports = {
     async execute(message, args, Discord, client){
         const channel = '785642283919474708';
         const memberRole = message.guild.roles.cache.find(role => role.name === "Member");
+        const newbieRole = message.guild.roles.cache.find(role => role.name === "newbie");
         
         const memberEmoji = '👍';
         let embed = new Discord.MessageEmbed()
@@ -12,5 +13,26 @@ module.exports = {
             .setDescription(`${memberEmoji} = Member Role!`);
         let messageEmbed = await message.channel.send(embed);
         messageEmbed.react(memberEmoji);
+
+        client.on('messageReactionAdd', async (reaction, user) => {
+            if(reaction.message.partial) await reaction.message.fetch();
+            if(user.bot) return;
+            if(!reaction.message.channel.id === channel){
+                if(reaction.emoji.name === memberEmoji){
+                    await reaction.message.guild.members.chache.get(user.id).roles.add(memberRole);
+                    await reaction.message.guild.members.chache.get(user.id).roles.remove(newbieRole);
+                }
+            }
+        });
+
+        client.on('messageReactionRemove', async (reaction, user) => {
+            if(reaction.message.partial) await reaction.message.fetch();
+            if(user.bot) return;
+            if(!reaction.message.channel.id === channel){
+                if(reaction.emoji.name === memberEmoji){
+                    await reaction.message.guild.members.chache.get(user.id).roles.remove(memberRole);
+                }
+            }
+        });
     }
 }
