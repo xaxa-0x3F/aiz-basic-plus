@@ -5,7 +5,7 @@ module.exports = {
         const channel = '785642283919474708';
         const memberRole = message.guild.roles.cache.find(role => role.name === "Member");
         
-        const memberemoji = '👍';
+        const memberEmoji = '👍';
         let embed = newDiscord.MessageEmbed()
             .setColor('#FFB6C1')
             .setTitle('React to get your roles!')
