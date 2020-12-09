@@ -23,11 +23,14 @@ client.on('ready', ()=> {
         }
     });
 
-    command(client, ['cc', 'clear channel'], (message)=> {
-        if(message.member.hadPermission('ADMINISTRATOR')){
+    command(client, ['cc', 'clearchannel'], (message)=> {
+        if(message.member.hasPermission('ADMINISTRATOR')){
             message.channel.messages.fetch().then((results) => {
                 message.channel.bulkDelete(results);
             });
+            message.channel.send('deleting as many messages as I can ❤');
+        } else {
+            return;
         }
     });
 
