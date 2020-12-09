@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 module.exports = {
-    name: 'inviteme',
-    description: "How to invite.",
+    name: 'ping',
+    description: "PONG PONG PONG ",
     execute(message, args){
         const newEmbed = new Discord.MessageEmbed()
         .setColor('#FFB6C1')
