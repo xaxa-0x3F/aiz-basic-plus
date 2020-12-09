@@ -19,7 +19,7 @@ client.on('ready', ()=> {
     client.user.setPresence({
         activity: {
             name: guild.name,
-            type: 'WATCHING',
+            type: 0,
         }
     });
 
