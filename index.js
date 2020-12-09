@@ -23,8 +23,12 @@ client.on('ready', ()=> {
         }
     });
 
-    command(client, 'help', (message)=> {
-        
+    command(client, ['cc', 'clear channel'], (message)=> {
+        if(message.member.hadPermission('ADMINISTRATOR')){
+            message.channel.messages.fetch().then((results) => {
+                message.channel.bulkDelete(results);
+            });
+        }
     });
 
     /*command(client, 'status', message =>{
