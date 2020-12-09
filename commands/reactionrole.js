@@ -9,7 +9,7 @@ module.exports = {
         let embed = newDiscord.MessageEmbed()
             .setColor('#FFB6C1')
             .setTitle('React to get your roles!')
-            .setDescription('👍 = Member role!');
+            .setDescription(`${memberEmoji} = Member Role!`);
         let messageEmbed = await message.channel.send(embed);
         messageEmbed.react(memberEmoji);
     }
