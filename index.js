@@ -18,8 +18,8 @@ client.on('ready', ()=> {
 
     client.user.setPresence({
         activity: {
-            name: '+help',
-            type: 0,
+            name: guild,
+            type: 'WATCHING',
         }
     });
 
