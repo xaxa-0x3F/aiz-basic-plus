@@ -3,7 +3,7 @@ const pagination = require('discord.js-pagination');
 module.exports = {
     name: 'help',
     description: "Help with commands!",
-    async execute(client, message, args){
+    execute(client, message, args){
         const moderation = new Discord.MessageEmbed()
         .setColor('#FFB6C1')
         .setTitle('Moderation Commands')
