@@ -64,30 +64,6 @@ try{
 } 
 });
 
-client.on("messageReactionAdd", async (reaction, user) => {
-    if (reaction.message.partial) await reaction.message.fetch();
-    if (reaction.partial) await reaction.fetch();
-    if (user.bot) return;
-    if(!reaction.message.guild) return;
-    if(reaction.message.channel.id === "785642283919474708" ){
-        if(reaction.emoji.name === '👍'){
-            await reaction.message.guild.members.cache.get(user.id).roles.add("784960696445173762")
-        }
-    }
-});
-
-client.on("messageReactionRemove", async (reaction, user) =>{
-    if (reaction.message.partial) await reaction.message.fetch();
-    if (reaction.partial) await reaction.fetch();
-    if (user.bot) return;
-    if(!reaction.message.guild) return;
-    if(reaction.message.channel.id === "785642283919474708" ){
-        if(reaction.emoji.name === '👍'){
-            await reaction.message.guild.members.cache.get(user.id).roles.remove("784960696445173762")
-        }
-    }
-});
-
 client.on('guildMemberAdd', guildMember =>{
     let welcomeRole = guildMember.guild.roles.cache.find(role => role.name === 'Member');
     
