@@ -61,6 +61,8 @@ try{
         message.channel.send(`${discordservers.join('\n')}`);
     } else if(command == 'inviteme'){
         client.commands.get('inviteme').execute(message, args);
+    } else if(command == 'abbey'){
+        client.commands.get('abbey').execute(message, args);
     }
 } catch (err){
     message.channel.send('Invalid or incomplete command. Try `+help` for more info.\n`' + err + '`');
