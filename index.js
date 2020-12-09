@@ -47,12 +47,7 @@ try{
     } else if(command == 'ban'){
         client.commands.get('ban').execute(message, args);
     } else if(command == 'reactionrole'){
-        let embed = new Discord.MessageEmbed()
-        .setTitle('reaction Roles')
-        .setDescription('React to gain the role!')
-        .setColor('#FFB6C1')
-        let msgEmbed = await message.channel.send(embed)
-        msgEmbed.react('👍')
+        client.commands.get('reactionrole').execute(message, args, Discord, client);
     } else if(command == 'servers'){
         let discordservers = [];
         client.guilds.cache.forEach(g => {
