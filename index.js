@@ -25,11 +25,12 @@ client.on('ready', ()=> {
 
     command(client, 'status', message =>{
         const content = message.content.replace('!status', '');
+        const content2 = message.content.replace('!status', '');
 
         client.user.setPresence({
             activity: {
                 name: content,
-                type: 0,
+                type: content2,
             }
         });
     });
