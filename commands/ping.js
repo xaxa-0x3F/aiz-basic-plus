@@ -1,4 +1,5 @@
 const Discord = require('discord.js');
+const Discord = require('discord.js');
 module.exports = {
     name: 'inviteme',
     description: "How to invite.",
@@ -6,8 +7,7 @@ module.exports = {
         const newEmbed = new Discord.MessageEmbed()
         .setColor('#FFB6C1')
         .setTitle('PONG!')
-        .setURL('https://www.youtube.com/channel/UC7Rlc68ImIV32Y95xLmTSpA?view_as=subscribera')
-        .setDescription('This is a link to invite me to your server!')
+        .setDescription('Mega PONG')
         .addFields(
             {name: 'pong', value: 'pong'}
         )
