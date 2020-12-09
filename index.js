@@ -62,7 +62,7 @@ try{
     } else if(command == 'makeabot'){
         client.commands.get('makeabot').execute(message, args);
     } else if(command == 'help'){
-        client.commands.get('help').execute(message, args);
+        client.commands.get('help').execute(message, args, client);
     } else if(command == 'delete'){
         client.commands.get('delete').execute(message, args);
     } else if(command == 'kick'){
