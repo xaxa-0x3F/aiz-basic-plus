@@ -15,7 +15,8 @@ module.exports = {
             {name: 'unmute', value: 'unmutes a user used as~ +unmute @user'},
             {name: 'kick', value: 'kicks a member used as~ +kick @user'},
             {name: 'ban', value: 'bans a member used as~ +ban @user'},
-            {name: 'delete', value: 'deletes the amount of messages entered used as~ +delete 20'}
+            {name: 'delete', value: 'deletes the amount of messages entered used as~ +delete 20'},
+            {name: 'cc-clearchannel', value: 'Clears messages up to 2 weeks old'}
         )
         //.setImage('https://pa1.narvii.com/6518/5354d7ecc11e93741984c1ca103f37b5eecca047_hq.gif')
         .setFooter('More help here~>\nhttps://discord.gg/bR4R4PE6a4');
