@@ -119,5 +119,5 @@ client.on('guildMemberAdd', guildMember =>{
     guildMember.guild.channels.cache.get('785642283919474708').send(`Welcome <@${guildMember.user.id}> to our server!`);
 });
 //keep at end
-
+fqwef ( {}) '''''' ;;;;;; : ""
 client.login("Nzg0OTk0NTU3NDg5MTg0Nzc5.X8xZJg.yRf9_qL2hVGZ1kwUME6Ee8BXyeA");
