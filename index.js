@@ -4,7 +4,6 @@ const fs = require('fs');
 const command = require('./command');
 const prefix = '+';
 const client = new Discord.Client({partials: ["MESSAGE", "CHANNEL", "REACTION"]});
-const db = require('quick.db');
 var discordservers = [];
 
 client.commands = new Discord.Collection();
