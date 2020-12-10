@@ -7,6 +7,7 @@ const prefix = db.fetch(`${message.guild.id}prefix`);
 if(prefix === null || isNaN(prefix)){
   prefix = '+'
 }
+
 const client = new Discord.Client({partials: ["MESSAGE", "CHANNEL", "REACTION"]});
 var discordservers = [];
 
@@ -61,8 +62,7 @@ try{
     if(command === 'prefix'){
         db.set(`${message.guild.id}prefix`, args[0])
         return message.reply(`your prefix is now ${args[0]}`) 
-    }
-     else if(command === 'ping'){
+    } else if(command === 'ping'){
         client.commands.get('ping').execute(message, args);
     } else if(command == 'youtube'){
         client.commands.get('youtube').execute(message, args);
