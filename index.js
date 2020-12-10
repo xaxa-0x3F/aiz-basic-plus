@@ -52,8 +52,8 @@ client.on('ready', ()=> {
 
 client.on('message', async message =>{
 try{
-    if(!message.content.startsWith(prefix) || message.author.bot) return;
     const prefix =db.get(`guild_${message.guild.id}_prefix` || "?");
+    if(!message.content.startsWith(prefix) || message.author.bot) return;
     const args = message.content.slice(prefix.length).split(/ +/);
     const command = args.shift().toLowerCase();
 
@@ -99,13 +99,13 @@ try{
             member[1].setMute(true)
         }
      } else if (message.content == 'prefix'){
-       /* if(!message.member.hasPermission('MANAGE_GUILD')) return message.channel.send('You are not allowed to change the prefix');
+        if(!message.member.hasPermission('MANAGE_GUILD')) return message.channel.send('You are not allowed to change the prefix');
         if(!args[1]) return message.channel.send('You need to specify a prefix.');
         if(args[1].length > 3) return message.channel.send('A prefixx can only be 3 or less characters');
         if(args[1] === db.get(`guild_${message.guild.id}_prefix`)) return message.channel.send('That is already your prefix');
         if(args[1] === "?") db.delete(`guild_${message.guild.id}_prefix`);
         db.set(`guild_${message.guild.id}_prefix`, args[1]);
-        return message.channel.send(`Your new prefix is ${args[1]}`); */
+        return message.channel.send(`Your new prefix is ${args[1]}`); 
      } 
 } catch (err){
     message.channel.send('Invalid or incomplete command. Try `+help` for more info.\n`' + err + '`');
@@ -118,7 +118,6 @@ client.on('guildMemberAdd', guildMember =>{
     guildMember.roles.add(welcomeRole);
     guildMember.guild.channels.cache.get('785642283919474708').send(`Welcome <@${guildMember.user.id}> to our server!`);
 });
-
 //keep at end
-wefwef ( ) { === ::: }
+
 client.login("Nzg0OTk0NTU3NDg5MTg0Nzc5.X8xZJg.yRf9_qL2hVGZ1kwUME6Ee8BXyeA");
