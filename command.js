@@ -1,4 +1,7 @@
-const { prefix } = require('./config.json');
+var prefix = db.fetch(`${message.guild.id}prefix`)
+if(prefix === null || isNaN(prefix)){
+  prefix = '+'
+}
 
 module.exports = (client, aliases, callback) => {
     if(typeof aliases === 'string'){

@@ -3,7 +3,6 @@ const config = require('./config.json');
 const fs = require('fs');
 const command = require('./command');
 const db = require('quick.db');
-    23r     23r { }
 
 const client = new Discord.Client({partials: ["MESSAGE", "CHANNEL", "REACTION"]});
 var discordservers = [];
@@ -53,7 +52,7 @@ client.on('ready', ()=> {
 
 client.on('message', async message =>{
 try{
-    const prefix = db.fetch(`${message.guild.id}prefix`);
+    var prefix = db.fetch(`${message.guild.id}prefix`);
     if(prefix === null || isNaN(prefix)){
     prefix = '+'
     }
