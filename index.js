@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 const config = require('./config.json');
 const fs = require('fs');
 const command = require('./command');
-//const prefix =db.get(`guild_${message.guild.id}_prefix` || "+");
+const prefix = '+';
 const client = new Discord.Client({partials: ["MESSAGE", "CHANNEL", "REACTION"]});
 const db = require('quick.db');
 var discordservers = [];
@@ -52,20 +52,11 @@ client.on('ready', ()=> {
 
 client.on('message', async message =>{
 try{
-    const prefix =db.get(`guild_${message.guild.id}_prefix`) || "+"
     if(!message.content.startsWith(prefix) || message.author.bot) return;
     const args = message.content.slice(prefix.length).split(/ +/);
     const command = args.shift().toLowerCase();
 
-    if (message.content.startsWith(`${prefix}prefix`)){
-        if(!message.member.hasPermission('MANAGE_GUILD')) return message.channel.send('You are not allowed to change the prefix');
-        if(!args[1]) return message.channel.send('You need to specify a prefix.');
-        if(args[1].length > 3) return message.channel.send('A prefix can only be 3 or less characters');
-        if(args[1] === db.get(`guild_${message.guild.id}_prefix`)) return message.channel.send('That is already your prefix');
-        if(args[1] === "?") db.delete(`guild_${message.guild.id}_prefix`);
-        db.set(`guild_${message.guild.id}_prefix`, args[1]);
-        return message.channel.send(`Your new prefix is ${args[1]}`); 
-    } else if(command === 'ping'){
+    if(command === 'ping'){
         client.commands.get('ping').execute(message, args);
     } else if(command == 'youtube'){
         client.commands.get('youtube').execute(message, args);
