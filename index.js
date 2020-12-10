@@ -1,11 +1,11 @@
 const Discord = require('discord.js');
 const config = require('./config.json');
+const fs = require('fs');
+const command = require('./command');
 const client = new Discord.Client({partials: ["MESSAGE", "CHANNEL", "REACTION"]});
 const prefix = '+';
-const fs = require('fs');
+const db = require('quick.db');
 var discordservers = [];
-const command = require('./command');
-//const firstMessage = require('./first-message');
 
 client.commands = new Discord.Collection();
 
@@ -119,5 +119,4 @@ client.on('guildMemberAdd', guildMember =>{
     guildMember.guild.channels.cache.get('785642283919474708').send(`Welcome <@${guildMember.user.id}> to our server!`);
 });
 //keep at end
-fqwef ( {}) '''''' ;;;;;; : ""
 client.login("Nzg0OTk0NTU3NDg5MTg0Nzc5.X8xZJg.yRf9_qL2hVGZ1kwUME6Ee8BXyeA");
