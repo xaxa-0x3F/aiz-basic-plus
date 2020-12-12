@@ -2,8 +2,9 @@ module.exports = {
     name: 'mute',
     description: "this mutes users.",
     execute(message, args){
+    try {
         if(message.member.permissions.has("KICK_MEMBERS")){
-            const target = message.mentions.users.first();
+            let target = message.mentions.members.first(); 
             if(target){
             let mainRole = message.guild.roles.cache.find(role => role.name === 'Member');
             let muteRole = message.guild.roles.cache.find(role => role.name === 'Muted');
@@ -18,5 +19,8 @@ module.exports = {
         } else{
             message.channel.send('You are not allowed to mute members.');
         } 
+    } catch(err){
+        message.channel.send('You need a Member role & a Muted role');
     }
-}
+    }
+} 

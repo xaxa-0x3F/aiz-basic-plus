@@ -7,8 +7,10 @@ module.exports = {
         const moderation = new Discord.MessageEmbed()
         .setColor('#FFB6C1')
         .setTitle('Moderation Commands')
-        .setURL('https://www.youtube.com/channel/UC7Rlc68ImIV32Y95xLmTSpA?view_as=subscribera')
+        .setURL('https://discord.gg/bR4R4PE6a4')
+        .setAuthor('Ais ~ Made by eh_asuna', 'https://i.pinimg.com/originals/62/55/9d/62559ddae39f168993b3e866bd01cc67.gif', 'https://www.youtube.com/channel/UC7Rlc68ImIV32Y95xLmTSpA?view_as=subscriber')
         .setDescription('Moderation commands can only be performed by authorized roles.')
+        .setThumbnail('https://media1.giphy.com/media/oQIbkZ1HyDPos/giphy.gif')
         .addFields(
             {name: 'timedmute', value: 'mutes a user used as~ +timedmute @user 1m ~ (1s, 1m, 1h, 1d, 1y'},
             {name: 'mute', value: 'mutes a user used as~ +mute @user'},
@@ -18,14 +20,16 @@ module.exports = {
             {name: 'delete', value: 'deletes the amount of messages entered used as~ +delete 20'},
             {name: 'cc-clearchannel', value: 'Clears messages up to 2 weeks old'}
         )
-        //.setImage('https://pa1.narvii.com/6518/5354d7ecc11e93741984c1ca103f37b5eecca047_hq.gif')
-        .setFooter('More help here~>\nhttps://discord.gg/bR4R4PE6a4');
+        .setImage('https://pa1.narvii.com/6518/5354d7ecc11e93741984c1ca103f37b5eecca047_hq.gif')
+        .setFooter('More help here~>\nhttps://discord.gg/bR4R4PE6a4', 'https://cdn.discordapp.com/attachments/786478743748345880/786547245335445514/you_1.png');
         
         const fun = new Discord.MessageEmbed()
         .setColor('#FFB6C1')
-        .setTitle('Moderation Commands')
-        .setURL('https://www.youtube.com/channel/UC7Rlc68ImIV32Y95xLmTSpA?view_as=subscribera')
+        .setTitle('Fun Commands')
+        .setURL('https://discord.gg/bR4R4PE6a4')
+        .setAuthor('Ais ~ Made by eh_asuna', 'https://i.pinimg.com/originals/62/55/9d/62559ddae39f168993b3e866bd01cc67.gif', 'https://www.youtube.com/channel/UC7Rlc68ImIV32Y95xLmTSpA?view_as=subscriber')
         .setDescription('Fun commands can be used by anybody unless disabled!')
+        .setThumbnail('https://media1.giphy.com/media/oQIbkZ1HyDPos/giphy.gif')
         .addFields(
             {name: 'ping', value: 'reutrns: "pong!"'},
             {name: 'youtube', value: 'sends a link to the cretor`s youtube.'},
@@ -34,8 +38,8 @@ module.exports = {
             {name: 'inviteme', value: 'sends a link to invite me to your server!'},
             {name: 'servers', value: 'displays how many servers Im currently in!'}
         )
-        //.setImage('https://pa1.narvii.com/6518/5354d7ecc11e93741984c1ca103f37b5eecca047_hq.gif')
-        .setFooter('More help here~>\nhttps://discord.gg/bR4R4PE6a4');
+        .setImage('https://pa1.narvii.com/6518/5354d7ecc11e93741984c1ca103f37b5eecca047_hq.gif')
+        .setFooter('More help here~>\nhttps://discord.gg/bR4R4PE6a4', 'https://cdn.discordapp.com/attachments/786478743748345880/786547245335445514/you_1.png');
         
         const pages = [
             moderation,

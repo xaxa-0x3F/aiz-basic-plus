@@ -1,18 +1,19 @@
+const Discord = require('discord.js');
 module.exports = {
     name: 'reactionrole',
     description: 'Sets up a reaction role message',
     async execute(message, args, Discord, client){
-        const channel = '785642283919474708';
-        const memberRole = message.guild.roles.cache.find(role => role.name === "Member");
-        const newbieRole = message.guild.roles.cache.find(role => role.name === "newbie");
+        let channel = args[0].id;
+        let Role = message.guild.roles.cache.find(role => role.name === args[3]);
+        //const newbieRole = message.guild.roles.cache.find(role => role.name === args[4]);
         
-        const memberEmoji = '👍';
+        let Emoji = client.emojis.cache.find(emoji => emoji.name === args[2].name);
         let embed = new Discord.MessageEmbed()
-            .setColor('#FFB6C1')
-            .setTitle('React to get your roles!')
-            .setDescription(`${memberEmoji} = Member Role!`);
+            .setColor('RANDOM')
+            .setDescription(`${args[1]}`);
         let messageEmbed = await message.channel.send(embed);
-        messageEmbed.react(memberEmoji);
+        console.log(Emoji);
+        messageEmbed.react(Emoji);
 
         client.on('messageReactionAdd', async (reaction, user) => {
             if(reaction.message.partial) await reaction.message.fetch();
@@ -21,9 +22,9 @@ module.exports = {
             if(!reaction.message.guild) return;
 
             if(reaction.message.channel.id == channel){
-                if(reaction.emoji.name === memberEmoji){
-                    await reaction.message.guild.members.cache.get(user.id).roles.add(memberRole);
-                    await reaction.message.guild.members.cache.get(user.id).roles.remove(newbieRole);
+                if(reaction.emoji.name === Emoji){
+                    await reaction.message.guild.members.cache.get(user.id).roles.add(Role);
+                    ///await reaction.message.guild.members.cache.get(user.id).roles.remove(newbieRole);
                 }
             } else {
                 return;
@@ -35,8 +36,8 @@ module.exports = {
             if(user.bot) return;
             if(!reaction.message.guild) return;
             if(reaction.message.channel.id == channel){
-                if(reaction.emoji.name === memberEmoji){
-                    await reaction.message.guild.members.cache.get(user.id).roles.remove(memberRole);
+                if(reaction.emoji.name === Emoji){
+                    await reaction.message.guild.members.cache.get(user.id).roles.remove(Role);
                 }
             } else {
                 return;
