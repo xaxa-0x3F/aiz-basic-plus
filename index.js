@@ -120,7 +120,10 @@ client.on('message', async message =>{
         for (let member of channel.members) {
             member[1].setMute(true)
         }
-    }
+    } else if (message.content === "listemojis") {
+        const emojiList = message.guild.emojis.map(e=>e.toString()).join(" ");
+        message.channel.send(emojiList);
+      }
 } catch (err){
     message.channel.send('Invalid or incomplete command. Try `+help` for more info.\n`' + err + '`');
 } 
