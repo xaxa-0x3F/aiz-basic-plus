@@ -1,5 +1,5 @@
 const Discord = require('discord.js');
-module.exports = {
+rmodule.exports = {
     name: 'addrole',
     description: 'adds a role to a user',
     execute(message, args){
