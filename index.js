@@ -115,12 +115,12 @@ client.on('message', async message =>{
         client.commands.get('addrole').execute(message, args);
     } else if(command == 'pfp' || command == 'avatar' || command == 'av'){
         client.commands.get('pfp').execute(message, args);
-    } else if (message.content == 'muteAll') {
+    } else if (command == 'muteAll') {
         let channel = message.member.voiceChannel;
         for (let member of channel.members) {
             member[1].setMute(true)
         }
-    } else if (message.content == 'listemojis') {
+    } else if (command == 'listemojis') {
         const emojiList = message.guild.emojis.map(e=>e.toString()).join(" ");
         message.channel.send(emojiList);
       }
@@ -137,4 +137,6 @@ client.on('message', async message =>{
 }); */
 //keep at end
 //plz work plz
+
+{}[\\];'\];\];]we[fqw[]ef' erferferf ()((((((((((p;;;;;;))))))))))
 client.login("Nzg0OTk0NTU3NDg5MTg0Nzc5.X8xZJg.yRf9_qL2hVGZ1kwUME6Ee8BXyeA");
