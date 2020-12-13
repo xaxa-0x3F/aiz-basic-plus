@@ -137,15 +137,23 @@ client.on('message', async message =>{
     } else if(command == 'pfp' || command == 'avatar' || command == 'av'){
         client.commands.get('pfp').execute(message, args);
     } else if (command == 'muteAll') {
-        let channel = args[1];
-        for (let member of channel.members) {
-            member[1].setMute(true)
-        }
+        let channel = message.guild.channels.cache.find(channel => channel.toString() === args[0]);
+        channel.join().then(connection => {
+            // Yay, it worked!
+            message.channel.send("Successfully connected.");
+            for (let member of channelToSend.members) {
+                member[1].setMute(true)
+            }
+        });
     } else if (command == 'unmuteAll') {
-        let channel = args[1];
-        for (let member of channel.members) {
-            member[1].setMute(false);
-        } 
+        let channel = message.guild.channels.cache.find(channel => channel.toString() === args[0]);
+        channel.join().then(connection => {
+            // Yay, it worked!
+            message.channel.send("Successfully connected.");
+            for (let member of channelToSend.members) {
+                member[1].setMute(false)
+            }
+        });
     } else if (command == 'listemojis') {
         try{
         const emojiList = message.guild.emojis.cache.map(e=>e.toString()).join(" ");
@@ -154,6 +162,11 @@ client.on('message', async message =>{
             message.channel.send('You have no custom server emojis :(' + '||' + err + '||')
         }
       }
+      const channel = message.guild.channels.cache.find(channel => channel.toString() === args[0]);
+        channel.join().then(connection => {
+            // Yay, it worked!
+            console.log("Successfully connected.");
+        });
 } catch (err){
     message.channel.send('Invalid or incomplete command. Try `+help` for more info.\n||' + err + '||');
 } 
