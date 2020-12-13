@@ -120,7 +120,7 @@ client.on('message', async message =>{
         for (let member of channel.members) {
             member[1].setMute(true)
         }
-    } else if (message.content === "listemojis") {
+    } else if (message.content == 'listemojis') {
         const emojiList = message.guild.emojis.map(e=>e.toString()).join(" ");
         message.channel.send(emojiList);
       }
