@@ -11,7 +11,10 @@ module.exports = {
             let memberTarget = message.guild.members.cache.get(target.id);
 
             memberTarget.roles.add(addRole.id);
-            message.channel.send(`<@${memberTarget.user.id}> has been given the ${args[1]} role.`);
+            message.channel.send({embed: {
+              color: 	'#FFB6C1',
+              description: `<@${memberTarget.user.id}> has been given the ${args[1]} role.`
+            }});
             } else {
             message.channel.send('User not found.');
             }   

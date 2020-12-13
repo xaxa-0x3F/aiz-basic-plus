@@ -6,7 +6,10 @@ const db = require('quick.db');
 const fetch = require("node-fetch"); 
 const atob = require('atob');
 const memberCounter = require('./counters/member-counter');
-const client = new Discord.Client({partials: ["MESSAGE", "CHANNEL", "REACTION"]});
+const client = new Discord.Client({
+    partials: ["MESSAGE", "CHANNEL", "REACTION"],
+    diasbleEveryone: true
+});
 const Timeout = new Set();
 const ms = require('ms');
 const { setTimeout } = require('timers');
@@ -42,11 +45,20 @@ client.on('ready', () =>{
     }
     
     });
+
+    /*await mongo().then(mongoose => {
+        try{
+            console.log('connect to mongoose!')
+        } finally {
+            mongoose.connection.close()
+        }
+    }); */
 });
 
+//blacklisted words filter
 client.on('message', async message =>{
     try{
-    let  blacklisted = ['nigger', 'getadmin'];
+    let  blacklisted = ['nigger'];
     let foundInText = false;
     for(var i in blacklisted){
         if(message.content.toLowerCase().includes(blacklisted[i].toLowerCase())) foundInText = true;
@@ -55,22 +67,32 @@ client.on('message', async message =>{
         message.delete();
         message.reply('You are not allowed to say that.');
     }
-    /* if(message.content.toLowerCase().includes('@everyone')){
-        message.react(':regional_indicator_y:');
-        message.react(':regional_indicator_e:');
-        message.react(':regional_indicator_s:');
-        message.react(':question:');
-    } */
+
+    //React to messages if they include a certain phrase!
+    if(message.content.toLowerCase().includes('@everyone')){
+        message.react('🇾');
+        message.react('🇪');
+        message.react('🇸');
+        message.react('❓');
+    } if(message.content.toLowerCase().includes('cool')){
+        message.react('😎');
+    }
+
+    //Set Prefix
     var prefix = db.fetch(`${message.guild.id}prefix`);
-    //ttt.run(client, prefix, embed_color, start_cmd)
     if(prefix === null){
     prefix = '+'
     }
+
+    //Stop errors from happening or unlimited replies to a bot.
     if(!message.content.startsWith(prefix) || message.author.bot) return;
     if(!message.guild) return;
     if(!message.member) message.member = await message.guild.fetchMember(mess);
+
     const args = message.content.slice(prefix.length).split(/ +/);
     const command = args.shift().toLowerCase();
+
+    //Start command fetching some are in a command handler some aren't :)
     if(command === 'prefix'){
         if(message.member.permissions.has("KICK_MEMBERS")){
         db.set(`${message.guild.id}prefix`, args[0])
@@ -78,8 +100,7 @@ client.on('message', async message =>{
         } else {
             message.channel.send('You must be an admin to change the prefix 😢');
         }
-    } 
-    else if(command === 'ping'){
+    }  else if(command === 'ping'){
         client.commands.get('ping').execute(message, args);
     } else if(command == 'youtube'){
         client.commands.get('youtube').execute(message, args);
@@ -101,9 +122,9 @@ client.on('message', async message =>{
         client.commands.get('kick').execute(message, args);
     } else if(command == 'ban'){
         client.commands.get('ban').execute(message, args);
-    } /* else if(command == 'reactionrole'){
+    } else if(command == 'reactionrole'){
         client.commands.get('reactionrole').execute(message, args, Discord, client);
-    } */else if(command == 'servers'){
+    } else if(command == 'servers'){
         message.channel.send(`I'm in ${client.guilds.cache.size} servers!`);
     } else if(command == 'inviteme'){
         client.commands.get('inviteme').execute(message, args);
@@ -115,28 +136,31 @@ client.on('message', async message =>{
         client.commands.get('addrole').execute(message, args);
     } else if(command == 'pfp' || command == 'avatar' || command == 'av'){
         client.commands.get('pfp').execute(message, args);
-    } else if (command == 'muteAll') {
-        let channel = message.member.voiceChannel;
+    } /* else if (command == 'muteAll') {
+        let channel = args[1];
         for (let member of channel.members) {
             member[1].setMute(true)
         }
-    } else if (command == 'listemojis') {
-        const emojiList = message.guild.emojis.map(e=>e.toString()).join(" ");
-        message.channel.send(emojiList);
+    } else if (command == 'unmuteAll') {
+        let channel = args[1];
+        for (let member of channel.members) {
+            member[1].setMute(false);
+        } 
+    } */ else if (command == 'listemojis') {
+        try{
+        const emojiList = message.guild.emojis.cache.map(e=>e.toString()).join(" ");
+        message.channel.send(`${emojiList}`);
+        } catch(err){
+            message.channel.send('You have no custom server emojis :(' + '||' + err + '||')
+        }
       }
 } catch (err){
-    message.channel.send('Invalid or incomplete command. Try `+help` for more info.\n`' + err + '`');
+    message.channel.send('Invalid or incomplete command. Try `+help` for more info.\n||' + err + '||');
 } 
 });
 
 /* client.on('guildMemberAdd', guildMember =>{
-    let welcomeRole = guildMember.guild.roles.cache.find(role => role.name === 'Member');
-    
-    guildMember.roles.add(welcomeRole);
     guildMember.guild.channels.cache.get('785642283919474708').send(`Welcome <@${guildMember.user.id}> to our server!`);
 }); */
-//keep at end
-//plz work plz
 
-{}[\\];'\];\];]we[fqw[]ef' erferferf ()((((((((((p;;;;;;))))))))))
 client.login("Nzg0OTk0NTU3NDg5MTg0Nzc5.X8xZJg.yRf9_qL2hVGZ1kwUME6Ee8BXyeA");
