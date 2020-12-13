@@ -55,12 +55,12 @@ client.on('message', async message =>{
         message.delete();
         message.reply('You are not allowed to say that.');
     }
-    if(message.content.toLowerCase().includes('@everyone')){
+    /* if(message.content.toLowerCase().includes('@everyone')){
         message.react(':regional_indicator_y:');
         message.react(':regional_indicator_e:');
         message.react(':regional_indicator_s:');
         message.react(':question:');
-    }
+    } */
     var prefix = db.fetch(`${message.guild.id}prefix`);
     //ttt.run(client, prefix, embed_color, start_cmd)
     if(prefix === null){
