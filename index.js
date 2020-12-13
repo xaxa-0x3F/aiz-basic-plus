@@ -136,7 +136,7 @@ client.on('message', async message =>{
         client.commands.get('addrole').execute(message, args);
     } else if(command == 'pfp' || command == 'avatar' || command == 'av'){
         client.commands.get('pfp').execute(message, args);
-    } /* else if (command == 'muteAll') {
+    } else if (command == 'muteAll') {
         let channel = args[1];
         for (let member of channel.members) {
             member[1].setMute(true)
@@ -146,7 +146,7 @@ client.on('message', async message =>{
         for (let member of channel.members) {
             member[1].setMute(false);
         } 
-    } */ else if (command == 'listemojis') {
+    } else if (command == 'listemojis') {
         try{
         const emojiList = message.guild.emojis.cache.map(e=>e.toString()).join(" ");
         message.channel.send(`${emojiList}`);
