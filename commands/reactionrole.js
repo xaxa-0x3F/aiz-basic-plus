@@ -15,7 +15,7 @@ module.exports = {
         msg.react(args[2])
         console.log(Emoji);
         //messageEmbed.react(Emoji);
-
+        client.off('messageReactionAdd');
         client.on('messageReactionAdd', async (reaction, user) => {
             if(reaction.message.partial) await reaction.message.fetch();
             if(reaction.partial) await reaction.fetch();
@@ -31,7 +31,7 @@ module.exports = {
                 return;
             }
         });
-
+        client.off('messageReactionRemove');
         client.on('messageReactionRemove', async (reaction, user) => {
             if(reaction.message.partial) await reaction.message.fetch();
             if(user.bot) return;
