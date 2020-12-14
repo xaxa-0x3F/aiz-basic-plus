@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
-//const client = new Discord.Client({partials: ["MESSAGE", "CHANNEL", "REACTION"]});
-const reactionClient = new Discord.Client({partials: ["CHANNEL", "MESSAGE", "EMOJI", "RECATION"]});
+const client = new Discord.Client({partials: ["MESSAGE", "CHANNEL", "REACTION"]});
+//const reactionClient = new Discord.Client({partials: ["CHANNEL", "MESSAGE", "EMOJI", "RECATION"]});
 module.exports = {
     name: 'reactionrole',
     description: 'Sets up a reaction role message',
@@ -15,34 +15,33 @@ module.exports = {
         msg.react(args[2])
         console.log(Emoji);
         //messageEmbed.react(Emoji);
-        client.off('messageReactionAdd');
-        client.on('messageReactionAdd', async (reaction, user) => {
-            if(reaction.message.partial) await reaction.message.fetch();
-            if(reaction.partial) await reaction.fetch();
-            if(user.bot) return;
-            if(!reaction.message.guild) return;
-
-            if(reaction.message.channel.id == channelToSend){
-                if(reaction.emoji.name === Emoji){
-                    await reaction.message.guild.members.cache.get(user.id).roles.add(Role);
-                    ///await reaction.message.guild.members.cache.get(user.id).roles.remove(newbieRole);
-                }
-            } else {
-                return;
-            }
-        });
-        client.off('messageReactionRemove');
-        client.on('messageReactionRemove', async (reaction, user) => {
-            if(reaction.message.partial) await reaction.message.fetch();
-            if(user.bot) return;
-            if(!reaction.message.guild) return;
-            if(reaction.message.channel.id == channelToSend){
-                if(reaction.emoji.name === Emoji){
-                    await reaction.message.guild.members.cache.get(user.id).roles.remove(Role);
-                }
-            } else {
-                return;
-            }
-        });
     }
 }
+const client = new Discord.Client({partials: ["MESSAGE", "CHANNEL", "REACTION"]});
+client.on('messageReactionAdd', async (reaction, user) => {
+    if(reaction.message.partial) await reaction.message.fetch();
+    if(reaction.partial) await reaction.fetch();
+    if(user.bot) return;
+    if(!reaction.message.guild) return;
+
+    if(reaction.message.channel.id == channelToSend){
+        if(reaction.emoji.name === Emoji){
+            await reaction.message.guild.members.cache.get(user.id).roles.add(Role);
+            ///await reaction.message.guild.members.cache.get(user.id).roles.remove(newbieRole);
+        }
+    } else {
+        return;
+    }
+});
+client.on('messageReactionRemove', async (reaction, user) => {
+    if(reaction.message.partial) await reaction.message.fetch();
+    if(user.bot) return;
+    if(!reaction.message.guild) return;
+    if(reaction.message.channel.id == channelToSend){
+        if(reaction.emoji.name === Emoji){
+            await reaction.message.guild.members.cache.get(user.id).roles.remove(Role);
+        }
+    } else {
+        return;
+    }
+});
