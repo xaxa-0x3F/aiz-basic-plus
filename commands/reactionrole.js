@@ -22,7 +22,7 @@ module.exports = {
             if(user.bot) return;
             if(!reaction.message.guild) return;
 
-            if(reaction.message.channel.id == channel){
+            if(reaction.message.channel.id == channelToSend){
                 if(reaction.emoji.name === Emoji){
                     await reaction.message.guild.members.cache.get(user.id).roles.add(Role);
                     ///await reaction.message.guild.members.cache.get(user.id).roles.remove(newbieRole);
@@ -36,7 +36,7 @@ module.exports = {
             if(reaction.message.partial) await reaction.message.fetch();
             if(user.bot) return;
             if(!reaction.message.guild) return;
-            if(reaction.message.channel.id == channel){
+            if(reaction.message.channel.id == channelToSend){
                 if(reaction.emoji.name === Emoji){
                     await reaction.message.guild.members.cache.get(user.id).roles.remove(Role);
                 }
