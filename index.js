@@ -162,11 +162,6 @@ client.on('message', async message =>{
             message.channel.send('You have no custom server emojis :(' + '||' + err + '||')
         }
       }
-      const channel = message.guild.channels.cache.find(channel => channel.toString() === args[0]);
-        channel.join().then(connection => {
-            // Yay, it worked!
-            console.log("Successfully connected.");
-        });
 } catch (err){
     message.channel.send('Invalid or incomplete command. Try `+help` for more info.\n||' + err + '||');
 } 

@@ -4,7 +4,7 @@ const reactionClient = new Discord.Client({partials: ["CHANNEL", "MESSAGE", "EMO
 module.exports = {
     name: 'reactionrole',
     description: 'Sets up a reaction role message',
-     async execute(message, args, reactionClient){
+     async execute(message, args, client){
         let channelToSend = message.guild.channels.cache.find(channel => channel.toString() === args[0]);
         let Role = message.guild.roles.cache.find(role => role.name === args[3]);
         //const newbieRole = message.guild.roles.cache.find(role => role.name === args[4]);
@@ -16,7 +16,7 @@ module.exports = {
         console.log(Emoji);
         //messageEmbed.react(Emoji);
 
-        reactionClient.on('messageReactionAdd', async (reaction, user) => {
+        client.on('messageReactionAdd', async (reaction, user) => {
             if(reaction.message.partial) await reaction.message.fetch();
             if(reaction.partial) await reaction.fetch();
             if(user.bot) return;
@@ -32,7 +32,7 @@ module.exports = {
             }
         });
 
-        reactionClient.on('messageReactionRemove', async (reaction, user) => {
+        client.on('messageReactionRemove', async (reaction, user) => {
             if(reaction.message.partial) await reaction.message.fetch();
             if(user.bot) return;
             if(!reaction.message.guild) return;
