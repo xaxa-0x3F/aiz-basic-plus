@@ -17,7 +17,7 @@ module.exports = {
         //messageEmbed.react(Emoji);
     }
 }
-const client = new Discord.Client({partials: ["MESSAGE", "CHANNEL", "REACTION"]});
+//const client = new Discord.Client({partials: ["MESSAGE", "CHANNEL", "REACTION"]});
 client.on('messageReactionAdd', async (reaction, user) => {
     if(reaction.message.partial) await reaction.message.fetch();
     if(reaction.partial) await reaction.fetch();
