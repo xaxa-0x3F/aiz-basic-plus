@@ -94,7 +94,7 @@ client.on('message', async message =>{
 
     //Start command fetching some are in a command handler some aren't :)
     if(command === 'prefix'){
-        if(message.member.permissions.has("KICK_MEMBERS")){
+        if(message.member.permissions.has("ADMINISTRATOR")){
         db.set(`${message.guild.id}prefix`, args[0])
         return message.reply('My prefix is now `' + args[0] + '`    👏 👏 👏') 
         } else {
@@ -122,9 +122,9 @@ client.on('message', async message =>{
         client.commands.get('kick').execute(message, args);
     } else if(command == 'ban'){
         client.commands.get('ban').execute(message, args);
-    } else if(command == 'reactionrole'){
+    } /* else if(command == 'reactionrole'){
         client.commands.get('reactionrole').execute(message, args, Discord, client);
-    } else if(command == 'servers'){
+    } */ else if(command == 'servers'){
         message.channel.send(`I'm in ${client.guilds.cache.size} servers!`);
     } else if(command == 'inviteme'){
         client.commands.get('inviteme').execute(message, args);
@@ -161,6 +161,17 @@ client.on('message', async message =>{
         } catch(err){
             message.channel.send('You have no custom server emojis :(' + '||' + err + '||')
         }
+      } else if (command == 'reactionrole'){
+            let channelToSend = message.guild.channels.cache.find(channel => channel.toString() === args[0]);
+            let Role = message.guild.roles.cache.find(role => role.name === args[3]);
+            //const newbieRole = message.guild.roles.cache.find(role => role.name === args[4]);
+            
+            let Emoji = message.guild.emojis.cache.get(emoji => emoji.toString() === args[2].name);
+            channelToSend.send(args[1])
+            let msg = await channelToSend.send(args[1])
+            msg.react(args[2])
+            console.log(Emoji);
+            //messageEmbed.react(Emoji);
       }
 } catch (err){
     message.channel.send('Invalid or incomplete command. Try `+help` for more info.\n||' + err + '||');
