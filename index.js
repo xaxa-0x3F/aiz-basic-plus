@@ -59,11 +59,11 @@ client.on('ready', () =>{
 console.log("Hello world ~ AIS");
 
 client.on('message', async message =>{
-    if(!message.content.startsWith(prefix) || message.author.bot) return;
-    if(!message.guild) return;
     if (message.guild === null) {
         return;
     }
+    if(!message.content.startsWith(prefix) || message.author.bot) return;
+    if(!message.guild) return;
     if(!message.member) message.member = await message.guild.fetchMember(mess);
     try{
     let  blacklisted = ['nigger'];
@@ -97,10 +97,6 @@ client.on('message', async message =>{
 
     //Stop errors from happening or unlimited replies to a bot.
     //Set Prefix
-    var prefix = db.fetch(`${message.guild.id}prefix`);
-    if(prefix === null){
-    prefix = '+'
-    }
 
     const args = message.content.slice(prefix.length).split(/ +/);
     const command = args.shift().toLowerCase();
