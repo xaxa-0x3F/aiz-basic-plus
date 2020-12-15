@@ -233,4 +233,4 @@ client.on('messageReactionRemove', async (reaction, user, message) => {
     guildMember.guild.channels.cache.get('785642283919474708').send(`Welcome <@${guildMember.user.id}> to our server!`);
 }); */
 
-client.login("Nzg0OTk0NTU3NDg5MTg0Nzc5.X8xZJg.yRf9_qL2hVGZ1kwUME6Ee8BXyeA");
+client.login(require('./config.json'));
