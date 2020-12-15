@@ -56,9 +56,9 @@ client.on('ready', () =>{
 });
 
 //blacklisted words filter
+console.log("Hello world ~ AIS");
 
 client.on('message', async message =>{
-    if(1=1){return}
     if(!message.content.startsWith(prefix) || message.author.bot) return;
     if(!message.guild) return;
     if (message.guild === null) {
