@@ -56,6 +56,7 @@ client.on('ready', () =>{
 });
 
 //blacklisted words filter
+
 client.on('message', async message =>{
     try{
     let  blacklisted = ['nigger'];
@@ -79,15 +80,26 @@ client.on('message', async message =>{
     }
 
     //Set Prefix
+    
+    console.log(prefix);
     var prefix = db.fetch(`${message.guild.id}prefix`);
     if(prefix === null){
     prefix = '+'
     }
+    
 
     //Stop errors from happening or unlimited replies to a bot.
     if(!message.content.startsWith(prefix) || message.author.bot) return;
     if(!message.guild) return;
+    if (message.guild === null) {
+        return;
+    }
     if(!message.member) message.member = await message.guild.fetchMember(mess);
+    //Set Prefix
+    var prefix = db.fetch(`${message.guild.id}prefix`);
+    if(prefix === null){
+    prefix = '+'
+    }
 
     const args = message.content.slice(prefix.length).split(/ +/);
     const command = args.shift().toLowerCase();
@@ -150,7 +162,7 @@ client.on('message', async message =>{
         channel.join().then(connection => {
             // Yay, it worked!
             message.channel.send("Successfully connected.");
-            for (let member of channelToSend.members) {
+            for (let member of channelToSend.members) 
                 member[1].setMute(false)
             }
         });
@@ -162,38 +174,51 @@ client.on('message', async message =>{
             message.channel.send('You have no custom server emojis :(' + '||' + err + '||')
         }
       } else if (command == 'reactionrole'){
+            db.set(`${message.guild.id}channel`, args[0])
             let channelToSend = message.guild.channels.cache.find(channel => channel.toString() === args[0]);
-            let Role = message.guild.roles.cache.find(role => role.name === args[3]);
+            db.set(`${message.guild.id}role`, args[3])
+            //let Role = message.guild.roles.cache.find(role => role.name === args[3]);
+
             //const newbieRole = message.guild.roles.cache.find(role => role.name === args[4]);
             
-            let Emoji = message.guild.emojis.cache.get(emoji => emoji.toString() === args[2].name);
+            db.set(`${message.guild.id}emoji`, args[2])
+            //let Emoji = message.guild.emojis.cache.get(emoji => emoji.toString() === args[2].name);
+            db.set(`${message.guild.id}message`, args[1])
             channelToSend.send(args[1])
             let msg = await channelToSend.send(args[1])
             msg.react(args[2])
-            console.log(Emoji);
+            //console.log(db.set(`${message.guild.id}emoji`, args[0]));
             //messageEmbed.react(Emoji);
-      }
+      } else if(command == 'dm'){
+        message.author.send(args.slice(0).join(' '));
+    } 
 } catch (err){
     message.channel.send('Invalid or incomplete command. Try `+help` for more info.\n||' + err + '||');
 } 
 });
 
-client.on('messageReactionAdd', async (reaction, user) => {
+/*
+client.on('messageReactionAdd', async (reaction, user, message) => {
+    var channelToSend = db.fetch(`${message.guild.id}channel`);
+    var Emoji = db.fetch(`${message.guild.id}emoji`);
+    var Role = db.fetch(`${message.guild.id}role`);
+    //var message = db.fetch(`${message.guild.id}message`);
     if(reaction.message.partial) await reaction.message.fetch();
-    if(reaction.partial) await reaction.fetch();
     if(user.bot) return;
     if(!reaction.message.guild) return;
-
     if(reaction.message.channel.id == channelToSend){
         if(reaction.emoji.name === Emoji){
             await reaction.message.guild.members.cache.get(user.id).roles.add(Role);
-            ///await reaction.message.guild.members.cache.get(user.id).roles.remove(newbieRole);
         }
     } else {
         return;
     }
 });
-client.on('messageReactionRemove', async (reaction, user) => {
+client.on('messageReactionRemove', async (reaction, user, message) => {
+    var channelToSend = db.fetch(`${message.guild.id}channel`);
+    var Emoji = db.fetch(`${message.guild.id}emoji`);
+    var Role = db.fetch(`${message.guild.id}role`);
+    //var message = db.fetch(`${message.guild.id}message`);
     if(reaction.message.partial) await reaction.message.fetch();
     if(user.bot) return;
     if(!reaction.message.guild) return;
@@ -205,6 +230,7 @@ client.on('messageReactionRemove', async (reaction, user) => {
         return;
     }
 });
+*/
 
 /* client.on('guildMemberAdd', guildMember =>{
     guildMember.guild.channels.cache.get('785642283919474708').send(`Welcome <@${guildMember.user.id}> to our server!`);

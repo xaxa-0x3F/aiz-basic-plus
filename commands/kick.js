@@ -4,15 +4,19 @@ module.exports = {
     execute(message, args){
         if(message.member.permissions.has('KICK_MEMBERS')){
             const member = message.mentions.users.first();
-            if(member){
+            if(member.kickable==false){
+                message.channel.send(`You cannot ban ${member}, sorry!`).react('😓');
+            }
+            if(member.kickable==true){
                 const memberTarget = message.guild.members.cache.get(member.id);
-                memberTarget.kick();
-                message.channel.send(`${member} has been successfully kicked!`);
+                var reason = args[1];
+                memberTarget.kick(reason);
+                message.channel.send(`${member} has been successfully kicked!`+`Reason: ${reason}`).react('👍');
             } else{
-                message.channel.send('User not found/Mentioned.')
+                message.channel.send('User not found/Mentioned.').react('❓');
             }
         } else {
-            message.channel.send('You cannot kick members.');
+            message.channel.send('You cannot kick members.').react('😢');
         }
     }
 }

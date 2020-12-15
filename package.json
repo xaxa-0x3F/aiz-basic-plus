@@ -9,7 +9,6 @@
   "author": "Asuna ~ Bart H.",
   "license": "ISC",
   "dependencies": {
-    "ascii-table": "0.0.9",
     "atob": "^2.1.2",
     "discord.js": "^12.5.1",
     "discord.js-pagination": "^1.0.3",
