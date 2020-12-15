@@ -58,6 +58,12 @@ client.on('ready', () =>{
 //blacklisted words filter
 
 client.on('message', async message =>{
+    if(!message.content.startsWith(prefix) || message.author.bot) return;
+    if(!message.guild) return;
+    if (message.guild === null) {
+        return;
+    }
+    if(!message.member) message.member = await message.guild.fetchMember(mess);
     try{
     let  blacklisted = ['nigger'];
     let foundInText = false;
@@ -89,12 +95,6 @@ client.on('message', async message =>{
     
 
     //Stop errors from happening or unlimited replies to a bot.
-    if(!message.content.startsWith(prefix) || message.author.bot) return;
-    if(!message.guild) return;
-    if (message.guild === null) {
-        return;
-    }
-    if(!message.member) message.member = await message.guild.fetchMember(mess);
     //Set Prefix
     var prefix = db.fetch(`${message.guild.id}prefix`);
     if(prefix === null){
