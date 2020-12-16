@@ -13,6 +13,7 @@ const client = new Discord.Client({
 const Timeout = new Set();
 const ms = require('ms');
 const { setTimeout } = require('timers');
+const RandomReddit = require('random-reddit');
 var discordservers = [];
 
 client.commands = new Discord.Collection();
@@ -59,12 +60,6 @@ client.on('ready', () =>{
 console.log("Hello world ~ AIS");
 
 client.on('message', async message =>{
-    if (message.guild === null) {
-        return;
-    }
-    if(!message.content.startsWith(prefix) || message.author.bot) return;
-    if(!message.guild) return;
-    if(!message.member) message.member = await message.guild.fetchMember(mess);
     try{
     let  blacklisted = ['nigger'];
     let foundInText = false;
@@ -86,17 +81,18 @@ client.on('message', async message =>{
         message.react('😎');
     }
 
-    //Set Prefix
-    
-    console.log(prefix);
+    //Set Prefix & nickname
     var prefix = db.fetch(`${message.guild.id}prefix`);
     if(prefix === null){
     prefix = '+'
     }
+    var nickN = db.fetch(`${message.guild.id}nickname`)
     
 
     //Stop errors from happening or unlimited replies to a bot.
-    //Set Prefix
+    if(!message.content.startsWith(prefix) || message.author.bot) return;
+    if(!message.guild) return;
+    if(!message.member) message.member = await message.guild.fetchMember(mess);
 
     const args = message.content.slice(prefix.length).split(/ +/);
     const command = args.shift().toLowerCase();
@@ -109,7 +105,13 @@ client.on('message', async message =>{
         } else {
             message.channel.send('You must be an admin to change the prefix 😢');
         }
-    }  else if(command === 'ping'){
+    } else if(command === 'setNick'){
+        if(message.member.permissions.has("MANAGE_NICKNAMES")){
+            message.guild.me.setNickname(args[0]);
+        } else {
+            message.channel.send('You must be an admin to change my nickname 😢');
+        }22
+    } else if(command === 'ping'){
         client.commands.get('ping').execute(message, args);
     } else if(command == 'youtube'){
         client.commands.get('youtube').execute(message, args);
@@ -145,7 +147,9 @@ client.on('message', async message =>{
         client.commands.get('addrole').execute(message, args);
     } else if(command == 'pfp' || command == 'avatar' || command == 'av'){
         client.commands.get('pfp').execute(message, args);
-    } /* else if (command == 'muteAll') {
+    } /*else if(command == 'randomReddit' || command == 'randomreddit' || command == 'randomr'){
+        client.commands.get('randomReddit').execute(message, args);
+    }  else if (command == 'muteAll') {
         let channel = message.guild.channels.cache.find(channel => channel.toString() === args[0]);
         channel.join().then(connection => {
             // Yay, it worked!
@@ -233,4 +237,4 @@ client.on('messageReactionRemove', async (reaction, user, message) => {
     guildMember.guild.channels.cache.get('785642283919474708').send(`Welcome <@${guildMember.user.id}> to our server!`);
 }); */
 
-client.login(require('./config.json'));
+client.login("Nzg0OTk0NTU3NDg5MTg0Nzc5.X8xZJg.3IaX5nEiPWbLqw4VHgDUYl8Ybxk");
