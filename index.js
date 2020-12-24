@@ -82,11 +82,12 @@ client.on('message', async message =>{
     }
 
     //Set Prefix & nickname
+    var prefix = '+';
     try{
     if(message.channel.type=='dm'){
         return;
     } if(message.channel.type != 'dm'){
-        var prefix = db.fetch(`${message.guild.id}prefix`);
+        prefix = db.fetch(`${message.guild.id}prefix`);
     } if(prefix === null){
         prefix = '+'
     } if(message.guild === null){
