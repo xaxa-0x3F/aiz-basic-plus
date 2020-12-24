@@ -91,13 +91,15 @@ client.on('message', async message =>{
 
     //Stop errors from happening or unlimited replies to a bot.
     if(!message.content.startsWith(prefix) || message.author.bot) return;
-    if(!message.guild) return;
     if(!message.member) message.member = await message.guild.fetchMember(mess);
 
     const args = message.content.slice(prefix.length).split(/ +/);
     const command = args.shift().toLowerCase();
 
     //Start command fetching some are in a command handler some aren't :)
+    if(message.guild === null){
+        message.channel.send('owo no dm commands sorry');
+    } else{
     if(command === 'prefix'){
         if(message.member.permissions.has("ADMINISTRATOR")){
         db.set(`${message.guild.id}prefix`, args[0])
@@ -192,7 +194,8 @@ client.on('message', async message =>{
             //messageEmbed.react(Emoji);
       } else if(command == 'dm'){
         message.author.send(args.slice(0).join(' '));
-    } 
+      } 
+    }
 } catch (err){
     message.channel.send('Invalid or incomplete command. Try `+help` for more info.\n||' + err + '||');
 } 
