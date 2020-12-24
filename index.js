@@ -82,12 +82,18 @@ client.on('message', async message =>{
     }
 
     //Set Prefix & nickname
+    try{
+    if(message.channel.type=='dm'){
+        returnl
+    } if(message.guild != null){
     var prefix = db.fetch(`${message.guild.id}prefix`);
-    if(prefix === null){
-    prefix = '+'
+    } if(prefix === null){
+        prefix = '+'
+    } if(message.guild === null){
+        return;
+    }} catch(e){
+        console.log(e);
     }
-    var nickN = db.fetch(`${message.guild.id}nickname`)
-    
 
     //Stop errors from happening or unlimited replies to a bot.
     if(!message.content.startsWith(prefix) || message.author.bot) return;
