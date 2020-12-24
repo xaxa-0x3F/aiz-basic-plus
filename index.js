@@ -84,9 +84,9 @@ client.on('message', async message =>{
     //Set Prefix & nickname
     try{
     if(message.channel.type=='dm'){
-        returnl
-    } if(message.guild != null){
-    var prefix = db.fetch(`${message.guild.id}prefix`);
+        return;
+    } if(message.channel.type != 'dm'){
+        var prefix = db.fetch(`${message.guild.id}prefix`);
     } if(prefix === null){
         prefix = '+'
     } if(message.guild === null){
