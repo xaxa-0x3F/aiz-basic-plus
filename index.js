@@ -171,7 +171,7 @@ client.on('message', async message =>{
     } */else if (command === 'listemojis') {
         try{
         const emojiList = message.guild.emojis.cache.map(e=>e.toString()).join(" ");
-        message.channel.send(`${emojiList}`);
+            message.channel.send(`${emojiList}`);
         } catch(err){
             message.channel.send('You have no custom server emojis :(' + '||' + err + '||')
         }
@@ -195,8 +195,7 @@ client.on('message', async message =>{
         let target = message.mentions.users.first();
         target.send(args.slice(0).join(' '));
       } else if(command == 'dmMe'){
-        let target = message.author;
-        target.send(args.slice(0).join(' '));
+        message.author.send(args.slice(0).join(' '));
       }
     }
 } catch (err){
