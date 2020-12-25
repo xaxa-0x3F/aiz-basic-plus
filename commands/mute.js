@@ -16,8 +16,10 @@ module.exports = {
                     description: "You can't mute moderators"
                 }});
             } else {
+                //message.memberTarget.send('You have been muted by ' + message.author);
                 memberTarget.roles.remove(mainRole.id);
                 memberTarget.roles.add(muteRole.id);
+                memberTarget.send('You have been muted.\nYou will not be able to talk and or see any channels.')
                 message.channel.send(`<@${memberTarget.user.id}> has been muted.`); 
             }
             } else {

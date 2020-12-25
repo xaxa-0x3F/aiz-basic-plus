@@ -6,6 +6,7 @@ module.exports = (client, aliases, callback) => {
     }
 
     client.on('message', message => {
+        if(message.channel.type === "dm") return;
         var prefix = db.fetch(`${message.guild.id}prefix`)
         if(prefix === null){
         prefix = '+'

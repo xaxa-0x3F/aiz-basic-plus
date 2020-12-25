@@ -60,6 +60,13 @@ client.on('ready', () =>{
 console.log("Hello world ~ AIS");
 
 client.on('message', async message =>{
+    var prefix = "+";
+
+    //In message event:
+    if(message.channel.type === "dm") return;
+    
+    var newprefix = db.fetch(`${message.guild.id}prefix`) || prefix;
+    //if (message.author.bot || message.channel.type === 'dm') return;
     try{
     let  blacklisted = ['nigger'];
     let foundInText = false;
@@ -79,21 +86,6 @@ client.on('message', async message =>{
         message.react('❓');
     } if(message.content.toLowerCase().includes('cool')){
         message.react('😎');
-    }
-
-    //Set Prefix & nickname
-    var prefix = '+';
-    try{
-    if(message.channel.type=='dm'){
-        return;
-    } if(message.channel.type != 'dm'){
-        prefix = db.fetch(`${message.guild.id}prefix`);
-    } if(prefix === null){
-        prefix = '+'
-    } if(message.guild === null){
-        return;
-    }} catch(e){
-        console.log(e);
     }
 
     //Stop errors from happening or unlimited replies to a bot.
@@ -119,7 +111,7 @@ client.on('message', async message =>{
             message.guild.me.setNickname(args[0]);
         } else {
             message.channel.send('You must be an admin to change my nickname 😢');
-        }22
+        }
     } else if(command === 'ping'){
         client.commands.get('ping').execute(message, args);
     } else if(command == 'youtube'){
@@ -176,7 +168,7 @@ client.on('message', async message =>{
                 member[1].setMute(false)
             }
         });
-    } */ else if (command == 'listemojis') {
+    } */else if (command === 'listemojis') {
         try{
         const emojiList = message.guild.emojis.cache.map(e=>e.toString()).join(" ");
         message.channel.send(`${emojiList}`);
@@ -199,15 +191,19 @@ client.on('message', async message =>{
             msg.react(args[2])
             //console.log(db.set(`${message.guild.id}emoji`, args[0]));
             //messageEmbed.react(Emoji);
-      } else if(command == 'dm'){
-        message.author.send(args.slice(0).join(' '));
-      } 
+      } else if(command == 'senddm'){
+        let target = message.mentions.users.first();
+        target.send(args.slice(0).join(' '));
+      } else if(command == 'dmMe'){
+        let target = message.author;
+        target.send(args.slice(0).join(' '));
+      }
     }
 } catch (err){
     message.channel.send('Invalid or incomplete command. Try `+help` for more info.\n||' + err + '||');
 } 
 });
-
+//hmmm
 /*
 client.on('messageReactionAdd', async (reaction, user, message) => {
     var channelToSend = db.fetch(`${message.guild.id}channel`);
