@@ -199,7 +199,7 @@ client.on('message', async message =>{
       } else if(command === 'setRecommendChannel'){
         if(message.member.permissions.has("ADMINISTRATOR")){
             message.guild.channels.cache.find(channel => channel.toString() === args[0]);
-            db.set(`${message.guild.id}recommendationChannel`, args[0])
+            db.set(`${message.guild.id}recommendChannel`, args[0])
             return message.reply('The recommendation channel is now `' + args[0] + '`    👏 👏 👏') 
             } else {
                 message.channel.send('You must be an admin to change the recommendation channel 😢');
