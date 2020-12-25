@@ -60,12 +60,15 @@ client.on('ready', () =>{
 console.log("Hello world ~ AIS");
 
 client.on('message', async message =>{
-    var prefix = "+";
-
     //In message event:
     if(message.channel.type === "dm") return;
     
-    var newprefix = db.fetch(`${message.guild.id}prefix`) || prefix;
+    var recommendChannel = db.fetch(`${message.guild.id}recommnedChannel`);
+    var prefix = db.fetch(`${message.guild.id}prefix`) || prefix;
+    if(prefix === null){
+        prefix = '+';
+    }
+
     //if (message.author.bot || message.channel.type === 'dm') return;
     try{
     let  blacklisted = ['nigger'];
@@ -105,13 +108,7 @@ client.on('message', async message =>{
         return message.reply('My prefix is now `' + args[0] + '`    👏 👏 👏') 
         } else {
             message.channel.send('You must be an admin to change the prefix 😢');
-        }
-    } else if(command === 'setNick'){
-        if(message.member.permissions.has("MANAGE_NICKNAMES")){
-            message.guild.me.setNickname(args[0]);
-        } else {
-            message.channel.send('You must be an admin to change my nickname 😢');
-        }
+                }
     } else if(command === 'ping'){
         client.commands.get('ping').execute(message, args);
     } else if(command == 'youtube'){
@@ -175,7 +172,7 @@ client.on('message', async message =>{
         } catch(err){
             message.channel.send('You have no custom server emojis :(' + '||' + err + '||')
         }
-      } else if (command == 'reactionrole'){
+      } else if (command === 'reactionrole'){
             db.set(`${message.guild.id}channel`, args[0])
             let channelToSend = message.guild.channels.cache.find(channel => channel.toString() === args[0]);
             db.set(`${message.guild.id}role`, args[3])
@@ -191,14 +188,35 @@ client.on('message', async message =>{
             msg.react(args[2])
             //console.log(db.set(`${message.guild.id}emoji`, args[0]));
             //messageEmbed.react(Emoji);
-      } else if(command == 'senddm'){
+      } else if(command === 'senddm'){
         let target = message.mentions.users.first();
         target.send(args.slice(0).join(' '));
-      } else if(command == 'dmMe'){
+      } else if(command === 'dmMe'){
         message.author.send(args.slice(0).join(' '));
-      } else if(command == 'randomMessage'){
+      } else if(command === 'randomMessage'){
         var rando = channel.messages.cache.random();
         message.channel.send(`${rando}`);
+      } else if(command === 'setRecommendChannel'){
+        if(message.member.permissions.has("ADMINISTRATOR")){
+            message.guild.channels.cache.find(channel => channel.toString() === args[0]);
+            db.set(`${message.guild.id}recommendationChannel`, args[0])
+            return message.reply('The recommendation channel is now `' + args[0] + '`    👏 👏 👏') 
+            } else {
+                message.channel.send('You must be an admin to change the recommendation channel 😢');
+            }
+      } else if(command === 'recommend'){
+        if(recommendChannel===null){
+            message.reply('There is not a setup recommendation channel.');
+        }
+        else if(recommendChannel!==null){
+        const newEmbedddd = new Discord.MessageEmbed()
+        .setColor('#FFB6C1')
+        .setTitle(`Reccomendation by ${message.author}`)
+        .setDescription(args.slice(0).join(' '))
+        .setFooter('Vote ✔️ or ❌');
+        recommendChannel.send(newEmbedddd);
+        sentMessage.react('✔️', '❌');
+        }
       }
     }
 } catch (err){
