@@ -196,7 +196,7 @@ client.on('message', async message =>{
       } else if(command === 'randomMessage'){
         var rando = channel.messages.cache.random();
         message.channel.send(`${rando}`);
-      } else if(command === 'setRecommendChannel'){
+      } /* else if(command === 'setRecommendChannel'){
         if(message.member.permissions.has("ADMINISTRATOR")){
             message.guild.channels.cache.find(channel => channel.toString() === args[0]);
             db.set(`${message.guild.id}recommendChannel`, args[0])
@@ -217,9 +217,10 @@ client.on('message', async message =>{
         recommendChannel.send(newEmbedddd);
         sentMessage.react('✔️', '❌');
         }
-      }
+      } */
     }
 } catch (err){
+    console.log(err);
     message.channel.send('Invalid or incomplete command. Try `+help` for more info.\n||' + err + '||');
 } 
 });
@@ -283,4 +284,4 @@ client.on("guildCreate", guild => {
                 Like our bot upvote us here ~> COMING SOON`);
 });
 
-client.login("Nzg0OTk0NTU3NDg5MTg0Nzc5.X8xZJg.3IaX5nEiPWbLqw4VHgDUYl8Ybxk");
+client.login("Nzg0OTk0NTU3NDg5MTg0Nzc5.X8xZJg.TEaYgpwWLgQq1W6irzJ7avlc2E0");
