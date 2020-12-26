@@ -139,6 +139,7 @@ client.on('message', async message => {
     message.channel.send('Invalid or incomplete command. Try `+help` for more info.\n||' + err + '||');
 } 
 });
+()#*#)$*&(&)(#$(%)&()#&$(%))
 
 client.on("guildCreate", guild => {
     let channelID;
