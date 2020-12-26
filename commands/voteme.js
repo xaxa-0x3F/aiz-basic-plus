@@ -7,12 +7,11 @@ module.exports = {
         const newEmbed = new Discord.MessageEmbed()
         .setColor('#FFB6C1')
         .setTitle('Thanks for considering voting!')
-        .setDescription('Mega PONG')
         .addFields(
-            {name: 'Vote here: ', value: 'pong'}
+            {name: 'Vote here: ', value: 'https://top.gg/bot/784994557489184779'}
         )
-        .setThumbnail('https://i.pinimg.com/originals/a9/35/ed/a935eda9c595e37ed5d4e7f09b1543c9.gif')
-        .setFooter('hehheheheheh<3');
+        .setThumbnail('https://img-9gag-fun.9cache.com/photo/aoNeYKA_460swp.webp')
+        .setFooter('Voting supports the bot greatly.');
 
         message.channel.send(newEmbed);
         }

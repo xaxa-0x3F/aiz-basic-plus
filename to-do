@@ -1,0 +1,95 @@
+//To-do, bugging, need to fix:
+
+//In message events
+
+else if(command === 'setRecommendChannel'){
+    if(message.member.permissions.has("ADMINISTRATOR")){
+        message.guild.channels.cache.find(channel => channel.toString() === args[0]);
+        db.set(`${message.guild.id}recommendChannel`, args[0])
+        return message.reply('The recommendation channel is now `' + args[0] + '`    👏 👏 👏') 
+        } else { 
+            message.channel.send('You must be an admin to change the recommendation channel 😢');
+        }
+    } else if(command === 'recommend'){
+    if(recommendChannel===null){
+        message.reply('There is not a setup recommendation channel.');
+    }
+    else if(recommendChannel!==null){
+    const newEmbedddd = new Discord.MessageEmbed()
+    .setColor('#FFB6C1')
+    .setTitle(`Reccomendation by ${message.author}`)
+    .setDescription(args.slice(0).join(' '))
+    .setFooter('Vote ✔️ or ❌');
+    recommendChannel.send(newEmbedddd);
+    sentMessage.react('✔️', '❌');
+    }
+} 
+else if (command === 'reactionrole'){
+    db.set(`${message.guild.id}channel`, args[0])
+    let channelToSend = message.guild.channels.cache.find(channel => channel.toString() === args[0]);
+    db.set(`${message.guild.id}role`, args[3])
+    //let Role = message.guild.roles.cache.find(role => role.name === args[3]);
+
+    //const newbieRole = message.guild.roles.cache.find(role => role.name === args[4]);
+    
+    db.set(`${message.guild.id}emoji`, args[2])
+    //let Emoji = message.guild.emojis.cache.get(emoji => emoji.toString() === args[2].name);
+    db.set(`${message.guild.id}message`, args[1])
+    channelToSend.send(args[1])
+    let msg = await channelToSend.send(args[1])
+    msg.react(args[2])
+    //console.log(db.set(`${message.guild.id}emoji`, args[0]));
+    //messageEmbed.react(Emoji);
+}  
+
+//Other events
+
+client.on('messageReactionAdd', async (reaction, user, message) => {
+    var channelToSend = db.fetch(`${message.guild.id}channel`);
+    var Emoji = db.fetch(`${message.guild.id}emoji`);
+    var Role = db.fetch(`${message.guild.id}role`);
+    //var message = db.fetch(`${message.guild.id}message`);
+    if(reaction.message.partial) await reaction.message.fetch();
+    if(user.bot) return;
+    if(!reaction.message.guild) return;
+    if(reaction.message.channel.id == channelToSend){
+        if(reaction.emoji.name === Emoji){
+            await reaction.message.guild.members.cache.get(user.id).roles.add(Role);
+        }
+    } else {
+        return;
+    }
+});
+client.on('messageReactionRemove', async (reaction, user, message) => {
+    var channelToSend = db.fetch(`${message.guild.id}channel`);
+    var Emoji = db.fetch(`${message.guild.id}emoji`);
+    var Role = db.fetch(`${message.guild.id}role`);
+    //var message = db.fetch(`${message.guild.id}message`);
+    if(reaction.message.partial) await reaction.message.fetch();
+    if(user.bot) return;
+    if(!reaction.message.guild) return;
+    if(reaction.message.channel.id == channelToSend){
+        if(reaction.emoji.name === Emoji){
+            await reaction.message.guild.members.cache.get(user.id).roles.remove(Role);
+        }
+    } else {
+        return;
+    }
+});
+
+
+client.on('guildMemberAdd', guildMember =>{
+    guildMember.guild.channels.cache.get('785642283919474708').send(`Welcome <@${guildMember.user.id}> to our server!`);
+}); 
+
+//variables, modules.
+const Timeout = new Set();
+const ms = require('ms');
+const { setTimeout } = require('timers');
+const RandomReddit = require('random-reddit');
+var discordservers = [];
+const fetch = require("node-fetch"); 
+const atob = require('atob');
+const command = require('./command');
+const config = require('./config.json');
+var recommendChannel = db.fetch(`${message.guild.id}recommnedChannel`);
