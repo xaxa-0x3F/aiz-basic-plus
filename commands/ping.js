@@ -11,7 +11,7 @@ module.exports = {
         .addFields(
             {name: 'pong', value: 'pong'}
         )
-        .setImage('https://thumbs.gfycat.com/DaringDimwittedFlyingsquirrel-max-1mb.gif')
+        .setThumbnail('https://thumbs.gfycat.com/DaringDimwittedFlyingsquirrel-max-1mb.gif')
         .setFooter('hehheheheheh<3');
 
         message.channel.send(newEmbed);

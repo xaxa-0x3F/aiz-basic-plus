@@ -5,9 +5,8 @@ module.exports = {
     async execute(message){
         try{
             const emojiList = message.guild.emojis.cache.map(e=>e.toString()).join(" ");
-            const newEmbed = new Discord.MessageEmbed()
-            .setColor('RANDOM').setTitle(`${message.guild.name}'s Emojis`)
-            .addField('~',emojiList);
+            message.channel.send(emojiList, {split: {char: ' ' }});
+            message.channel.send('You have no custom server emojis :(\n' + '||' + err + '||')
         } catch(err){
             message.channel.send('You have no cutom server emotes.\n' + `${err}`);
         }

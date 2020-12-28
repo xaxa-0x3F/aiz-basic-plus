@@ -39,7 +39,8 @@ module.exports = {
             {name: 'servers', value: 'displays how many servers Im currently in!'},
             {name: 'rolldice', value: 'roles a set of dice.'},
             {name: 'sendDm', value: 'sends a dm to a user `+sendDm @user message`'},
-            {name: 'dmMe', value: 'I will send you a dm. `+dmMe Hello this is me Aiz!`'}
+            {name: 'dmMe', value: 'I will send you a dm. `+dmMe Hello this is me Aiz!`'},
+            {name: 'listemojis', value: 'List all of the current server emojis'}
         )
         .setThumbnail('https://pa1.narvii.com/6518/5354d7ecc11e93741984c1ca103f37b5eecca047_hq.gif')
         .setFooter('More help here~>\nhttps://discord.gg/bR4R4PE6a4', 'https://cdn.discordapp.com/attachments/786478743748345880/786547245335445514/you_1.png');
