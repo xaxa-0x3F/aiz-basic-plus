@@ -41,36 +41,82 @@ client.on('message', async message => {
     }
 
     //Reaction Events
-    if(mesage.content.toLowerCase().includes('@everyone')){
+    var reactionz = db.fetch(`${message.guild.id}reactionz`);
+    if(reactionz == null || reactionz == undefined){
+        reactionz = 'on';
+    }
+    if(reactionz == 'on'){
+    if(message.content.toLowerCase().includes('@everyone')){
         message.react('🇾');
         message.react('🇪');
         message.react('🇸');
         message.react('❓');
     } if(message.content.toLowerCase().includes('cool')){
         message.react('😎');
-    } if(message.content.toLowerCase().includes('yes')){
-        message.react('✔️');
-    } if(message.content.toLowerCase().includes('no')){
-        message.react('❌');
     } if(message.content.toLowerCase().includes('nerd')){
         message.react('🤓');
     } if(message.content.toLowerCase().includes('cowboy')||message.content.toLowerCase().includes('yeehaw')){
         message.react('🤠');
     } if(message.content.toLowerCase().includes('```js')){
-        message.react('792333914727383040');
+        message.react('<:javascript:788861893472419861>');
     } if(message.content.toLowerCase().includes('```java')){
-        message.react('792334301856399381');
+        message.react('<:java:788861893707956234>');
+    } if(message.content.toLowerCase().includes('```python')){
+        message.react('<:python:788861893040930908>');
+    } if(message.content.toLowerCase().includes('vs code') || message.content.toLowerCase().includes('visual studio')){
+        message.react('<:vsCode:791963040069320724>');
     } if(message.content.toLowerCase().includes('sad')||message.content.toLowerCase().includes('cry')){
         message.react('😭');
     } if(message.content.toLowerCase().includes('love')||message.content.toLowerCase().includes('care')){
-        message.react('❤️');
-    } if(message.content.toLowerCase().includes('gross')||message.content.toLowerCase().includes('eww')
-        ||message.content.toLowerCase().includes('nasty')){
+        message.react('<a:dokdokihorihori:788861893572952064>');
+    } if(message.content.toLowerCase().includes('bruh')||message.content.toLowerCase().includes('nut')){
+        message.react('<a:nut:788865884957442108>');
+    } if(message.content.toLowerCase().includes('weeb')||message.content.toLowerCase().includes('otaku')){
+        message.react('<:weeb:784855468089540628>');
+    } if(message.content.toLowerCase().includes('gross')||message.content.toLowerCase().includes('eww')||message.content.toLowerCase().includes('nasty')){
         message.react('🤮');
     } if(message.content.toLowerCase().includes('recommendation')){
         message.react('✔️');
         message.react('❌');
-    } 
+    } if(message.content.toLowerCase().includes('im out') || message.content.toLowerCase().includes('bye')){
+        message.react('<a:imOut:788861895796719636>');
+    } if(message.content.toLowerCase().includes('baka') || message.content.toLowerCase().includes('idiot')){
+        message.react('<:baka:784855468115886131>');
+    } if(message.content.toLowerCase().includes('uwu')){
+        message.react('<a:NeonUWU:788861893338857503>');
+    } if(message.content.toLowerCase().includes('simp')){
+        message.react('<:simpPills:791963039926190101>');
+    } if(message.content.toLowerCase().includes('codeasaurous')){
+        message.react('<:dino:783725870446805014>');
+    } if(message.content.toLowerCase().includes('sip')){
+        message.react('<a:sip:788865883819737109>');
+    } if(message.content.toLowerCase().includes('satan') ||message.content.toLowerCase().includes('you need jesus')){
+        message.react('<:crosspeepo:784855910085427210>');
+    } if(message.content.toLowerCase().includes('thighs')){
+        message.react('<:thickThighs:788861893363367948>');
+    } if(message.content.toLowerCase().includes('racist')||message.content.toLowerCase().includes('nigga')){
+        message.react('<:racist:791963039946637312>');
+    } if(message.content.toLowerCase().includes('triggered')){
+        message.react('<:Dead_Triggered:788861893770084402>');
+    } if(message.content.toLowerCase().includes('dead chat') || message.content.toLowerCase().includes('chat is dead')){
+        message.react('<:deadChat:791963039745310740>');
+    } if(message.content.toLowerCase().includes('wink') || message.content.includes(';)')){
+        message.react('<a:chikaWink1:791961623693885450>');
+    } if(message.content.toLowerCase().includes('baby yoda')){
+        message.react('<:babyyoda:784855910060654592>');
+    } if(message.content.toLowerCase().includes('mods') && message.content.toLowerCase().includes('gay')){
+        message.react('<a:gaymods:784855468177621023>');
+    } if(message.content.toLowerCase().includes('nope') || message.content.toLowerCase().includes('no')){
+        message.react('<a:finger_wave:788861893648973844>');
+    } if(message.content.toLowerCase().includes('stonks')){
+        message.react('<:stonks:791963039997362197>');
+    } if(message.content.toLowerCase().includes('nervous') || message.content.toLowerCase().includes('sweat')){
+        message.react('<a:sweat:784855468413026375>');
+    } if(message.content.toLowerCase().includes('chika')){
+        message.react('<a:chikaBOP1:791961623971364874>');
+    } if(message.content.toLowerCase().includes('asuna')){
+        message.react('<:asuna2:784855469311131649>');
+    } }
     
     if(message.channel.type === "dm") return;
     var prefix = db.fetch(`${message.guild.id}prefix`) || prefix;
@@ -105,6 +151,10 @@ client.on('message', async message => {
         client.commands.get('kick').execute(message, args);
     } else if(command == 'ban'){
         client.commands.get('ban').execute(message, args);
+    } else if(command == 'reacton'){
+        client.commands.get('reacton').execute(message, args);
+    } else if(command == 'reactoff'){
+        client.commands.get('reactoff').execute(message, args);
     } else if(command == 'servers'){
         message.channel.send(`I'm in ${client.guilds.cache.size} servers!`);
     } else if(command == 'inviteme'){
@@ -116,13 +166,13 @@ client.on('message', async message => {
     } else if(command == 'pfp' || command == 'avatar' || command == 'av'){
         client.commands.get('pfp').execute(message, args);
     } else if (command === 'listemojis') {
-        client.commands.get('listEmojis').execute(message, args);
+        client.commands.get('listemojis').execute(message);
     } else if(command === 'senddm'){
         client.commands.get('sendDm').execute(message,args);
     } else if(command === 'dmMe'){
         client.commands.get('dmMe').execute(message, args);
-    } else if(command === 'randomMessage'){
-        client.commands.get('randomMessage').execute(message, args);
+    } else if(command === 'randommessage'){
+        client.commands.get('randommessage').execute(message);
     } else if(command === 'ping'){
         client.commands.get('ping').execute(message, args);
     } else if(command == 'youtube'){
@@ -130,16 +180,16 @@ client.on('message', async message => {
     } else if(command == 'dungeondestiny'){
         client.commands.get('dungeondestiny').execute(message, args);
     } else if(command == 'voteme'){
-        client.commands.get('voteme').execute(message, args);
+        client.commands.get('voteme').execute(message, args); 
     } else if(command == 'recommend'){
         client.commands.get('recommend').execute(message, args);
     }
     }
 } catch (err){
-    message.channel.send('Invalid or incomplete command. Try `+help` for more info.\n||' + err + '||');
-} 
+    message.channel.send('Invalid or incomplete command. Try `+help` for more info❤\n||' + err + '||');
+}
 });
-()#*#)$*&(&)(#$(%)&()#&$(%))
+
 
 client.on("guildCreate", guild => {
     let channelID;
@@ -158,7 +208,8 @@ client.on("guildCreate", guild => {
     channel.send(`Hey thanks for inviting me ❤\nTo view my commands just do +help! My prefix is changable as well!.\n
                 If you'd like to suggest any new changes, add-ons, or need help please join the following server!\n
                 https://discord.gg/bR4R4PE6a4\n
-                Like our bot upvote us here ~> COMING SOON`);
+                Like our bot upvote us here ~>\m
+                https://top.gg/bot/784994557489184779`);
 });
 
 client.login("Nzg0OTk0NTU3NDg5MTg0Nzc5.X8xZJg.TEaYgpwWLgQq1W6irzJ7avlc2E0");

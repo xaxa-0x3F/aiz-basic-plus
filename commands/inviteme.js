@@ -11,7 +11,7 @@ module.exports = {
         .addFields(
             {name: 'invite', value: 'https://discord.com/api/oauth2/authorize?client_id=784994557489184779&permissions=8&scope=bot'}
         )
-        .setImage('https://pa1.narvii.com/6518/5354d7ecc11e93741984c1ca103f37b5eecca047_hq.gif')
+        .setThumbnail('https://pa1.narvii.com/6518/5354d7ecc11e93741984c1ca103f37b5eecca047_hq.gif')
         .setFooter('More help here~>\nhttps://discord.gg/bR4R4PE6a4');
 
         message.channel.send(newEmbed);

@@ -3,18 +3,19 @@ module.exports = {
     description: 'Used for banning members',
     execute(message, args){
         if(message.member.permissions.has('BAN_MEMBERS')){
-            const member = message.mentions.users.first();
-            if(member.bannable == false){
-                message.channel.send(`You cannot ban ${member}, sorry!`).react('😓');
+            const memberr = message.mentions.members.first();
+            if(memberr.bannable == false){
+                message.channel.send(`You cannot ban ${memberr}, sorry!`);
             }
-            if(member.bannable == true){
+            if(memberr.bannable == true){
                 const memberTarget = message.guild.members.cache.get(member.id);
-                memberTarget.ban({reason: args[1]});
-                message.channel.send(`${member} was banned.` + '\n' + `Reason: ${args[1]}`).react('👍');
+                const reasonn = args.slice(1).join(' ');
+                memberTarget.ban({reason: reasonn});
+                message.channel.send(`${memberr} was banned.` + '\n' + `Reason: ${reason}`);
             } else{
-                message.channel.send('User not found/Mentioned.').react('❓');
+                message.channel.send('User not found/Mentioned.');
             }
-        } else {
+         } else {
             message.channel.send('You cannot ban members.');
         }
     }

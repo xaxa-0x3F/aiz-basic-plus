@@ -1,8 +1,9 @@
+const Discord = require('discord.js');
 module.exports = {
-    name: 'randomMessage',
+    name: 'randommessage',
     description: 'Sends a random message!',
-    execute(message, args){
-        var rando = channel.messages.cache.random();
+    execute(message){
+        var rando = message.channel.guild.messages.cache.random();
         message.channel.send(`${rando}`);
     }
 }

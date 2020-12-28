@@ -1,12 +1,15 @@
+const Discord = require("discord.js");
 module.exports = {
-    name: 'sendDm', 
-    description: 'Sends a dm to the tagged user.',
-    async execute(message, args){
+    name: 'listemojis', 
+    description: 'lists your servers emojis',
+    async execute(message){
         try{
             const emojiList = message.guild.emojis.cache.map(e=>e.toString()).join(" ");
-            message.channel.send(emojiList, { split: true });
+            const newEmbed = new Discord.MessageEmbed()
+            .setColor('RANDOM').setTitle(`${message.guild.name}'s Emojis`)
+            .addField('~',emojiList);
         } catch(err){
-            message.channel.send('You have no custom server emojis :(' + '||' + err + '||')
+            message.channel.send('You have no cutom server emotes.\n' + `${err}`);
         }
     }
 }
