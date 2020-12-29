@@ -167,11 +167,11 @@ client.on('message', async message => {
         client.commands.get('pfp').execute(message, args);
     } else if (command === 'listemojis') {
         client.commands.get('listemojis').execute(message);
-    } else if(command === 'senddm'){
+    } /* else if(command === 'senddm'){
         client.commands.get('sendDm').execute(message,args);
     } else if(command === 'dmMe'){
         client.commands.get('dmMe').execute(message, args);
-    } else if(command === 'randommessage'){
+    } */else if(command === 'randommessage'){
         client.commands.get('randommessage').execute(message);
     } else if(command === 'ping'){
         client.commands.get('ping').execute(message, args);
