@@ -106,7 +106,7 @@ client.on('message', async message => {
         message.react('<:babyyoda:784855910060654592>');
     } if(message.content.toLowerCase().includes('mods') && message.content.toLowerCase().includes('gay')){
         message.react('<a:gaymods:784855468177621023>');
-    } if(message.content.toLowerCase().includes('nope') || message.content.toLowerCase().includes('no')){
+    } if(message.content.toLowerCase().includes('nope')){
         message.react('<a:finger_wave:788861893648973844>');
     } if(message.content.toLowerCase().includes('stonks')){
         message.react('<:stonks:791963039997362197>');
