@@ -29,6 +29,11 @@ client.on('ready', () =>{
 });
 
 client.on('message', async message => {
+    if(message.guild === null || message.guild === undefined){
+        return;
+    } 
+    if(message.channel.type === "dm") return;
+    
     try{
     let  blacklisted = ['nigger'];
     let foundInText = false;
@@ -118,7 +123,6 @@ client.on('message', async message => {
         message.react('<:asuna2:784855469311131649>');
     } }
     
-    if(message.channel.type === "dm") return;
     var prefix = db.fetch(`${message.guild.id}prefix`) || prefix;
     if(prefix === null||prefix===undefined){
         prefix = '+';
@@ -130,9 +134,6 @@ client.on('message', async message => {
     const args = message.content.slice(prefix.length).split(/ +/);
     const command = args.shift().toLowerCase();
 
-    if(message.guild === null){
-        message.channel.send('owo no dm commands sorry');
-    } else {
     if(command === 'prefix'){
         client.commands.get('prefix').execute(message, args);
     } else if(command == 'help'){
@@ -183,7 +184,6 @@ client.on('message', async message => {
         client.commands.get('voteme').execute(message, args); 
     } else if(command == 'recommend'){
         client.commands.get('recommend').execute(message, args);
-    }
     }
 } catch (err){
     message.channel.send('Invalid or incomplete command. Try `+help` for more info❤\n||' + err + '||');
