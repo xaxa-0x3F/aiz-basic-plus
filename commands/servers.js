@@ -3,7 +3,7 @@ module.exports = {
     name: 'servers',
     description: "Displays how many servers I am currently in.",
     timeout: 15000,
-    execute(message, , client, args){
+    execute(message, client, args){
         const newEmbed = new Discord.MessageEmbed()
         .setColor('#FFB6C1')
         .setTitle('Thanks for considering voting!')
