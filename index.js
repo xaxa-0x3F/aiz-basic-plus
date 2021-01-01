@@ -121,7 +121,9 @@ client.on('message', async message => {
         message.react('<a:chikaBOP1:791961623971364874>');
     } if(message.content.toLowerCase().includes('asuna')){
         message.react('<:asuna2:784855469311131649>');
-    } }
+    } if(message.content.toLowerCase().includes('bop')){
+        message.react('<a:bop:788861894756532236>');
+    }}
     
     var prefix = db.fetch(`${message.guild.id}prefix`) || prefix;
     if(prefix === null||prefix===undefined){
@@ -157,7 +159,7 @@ client.on('message', async message => {
     } else if(command == 'reactoff'){
         client.commands.get('reactoff').execute(message, args);
     } else if(command == 'servers'){
-        message.channel.send(`I'm in ${client.guilds.cache.size} servers!`);
+        client.commands.get('reactoff').execute(message, args);
     } else if(command == 'inviteme'){
         client.commands.get('inviteme').execute(message, args);
     } else if(command == 'rolldice'){
@@ -168,11 +170,11 @@ client.on('message', async message => {
         client.commands.get('pfp').execute(message, args);
     } else if (command === 'listemojis') {
         client.commands.get('listemojis').execute(message);
-    } /* else if(command === 'senddm'){
+    } else if(command === 'senddm'){
         client.commands.get('sendDm').execute(message,args);
     } else if(command === 'dmMe'){
         client.commands.get('dmMe').execute(message, args);
-    } */else if(command === 'randommessage'){
+    } else if(command === 'randommessage'){
         client.commands.get('randommessage').execute(message);
     } else if(command === 'ping'){
         client.commands.get('ping').execute(message, args);

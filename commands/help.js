@@ -3,6 +3,7 @@ const pagination = require('discord.js-pagination');
 module.exports = {
     name: 'help',
     description: "Help with commands!",
+    timeout: 15000,
     execute(client, message, args){
         const moderation = new Discord.MessageEmbed()
         .setColor('#FFB6C1')
@@ -32,7 +33,7 @@ module.exports = {
         .setDescription('Fun commands can be used by anybody unless disabled!')
         .addFields(
             {name: 'ping', value: 'reutrns: "pong!"'},
-            {name: 'youtube', value: 'sends a link to the cretor`s youtube.'},
+            {name: 'youtube', value: 'sends a link to the creator`s youtube.'},
             {name: 'dungeon destiny', value: 'sends a link to Dungeon Destiny.'},
             {name: 'makeabot', value: 'sends a youtube link on where to learn how to make a bot'},
             {name: 'inviteme', value: 'sends a link to invite me to your server!'},
