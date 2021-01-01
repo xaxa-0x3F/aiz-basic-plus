@@ -159,7 +159,12 @@ client.on('message', async message => {
     } else if(command == 'reactoff'){
         client.commands.get('reactoff').execute(message, args);
     } else if(command == 'servers'){
-        client.commands.get('servers').execute(message, args);
+        const newEmbeddd = new Discord.MessageEmbed()
+        .setColor('#FFB6C1')
+        .setTitle('Thanks for considering voting!')
+        .setDescription(`I'm in ${client.guilds.cache.size} servers!`);
+
+        message.channel.send(newEmbeddd);
     } else if(command == 'inviteme'){
         client.commands.get('inviteme').execute(message, args);
     } else if(command == 'rolldice'){
