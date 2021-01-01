@@ -159,7 +159,7 @@ client.on('message', async message => {
     } else if(command == 'reactoff'){
         client.commands.get('reactoff').execute(message, args);
     } else if(command == 'servers'){
-        client.commands.get('reactoff').execute(message, args);
+        client.commands.get('servers').execute(message, args);
     } else if(command == 'inviteme'){
         client.commands.get('inviteme').execute(message, args);
     } else if(command == 'rolldice'){
