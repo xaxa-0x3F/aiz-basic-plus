@@ -10,5 +10,5 @@ module.exports = {
         .setDescription(`I'm in ${client.guilds.cache.size} servers!`);
 
         message.channel.send(newEmbed);
-        }
+    }
 }
