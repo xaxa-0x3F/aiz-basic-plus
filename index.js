@@ -191,6 +191,10 @@ client.on('message', async message => {
         client.commands.get('voteme').execute(message, args); 
     } else if(command == 'recommend'){
         client.commands.get('recommend').execute(message, args);
+    } else if(command == 'play'){
+        client.commands.get('play').execute(message, args);
+    } else if(command == 'leave'){
+        client.commands.get('leave').execute(message, args);
     }
 } catch (err){
     message.channel.send('Invalid or incomplete command. Try `+help` for more info❤\n||' + err + '||');
