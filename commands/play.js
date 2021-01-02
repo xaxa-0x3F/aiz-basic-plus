@@ -13,7 +13,7 @@ module.exports = {
         if(!permissions.has('SPEAK')) return message.channel.send('You are not allowed to use this command ❤')
         if(!args.length) return message.channel.send('You need to define play ')
     
-        const connection = async (query) => {
+        const videoFinder = async (query) => {
             const videoResult = await ytSearch(query);
 
             return(videoResult.videos.length > 1) ? videoResult.videos[0] : null;
