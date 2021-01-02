@@ -13,6 +13,31 @@ module.exports = {
         if(!permissions.has('SPEAK')) return message.channel.send('You are not allowed to use this command ❤')
         if(!args.length) return message.channel.send('You need to define play ❤')
     
+        const validURL = (str) =>{
+            var regex = /(http|https):\/\/(\w+:{0,1}\w*)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%!\-\/]))?/;
+            if(!regex.test(str)){
+                return false;
+            } else {
+                return true;
+            }
+        }
+
+        if(validURL(args[0])){
+ 
+            const  connection = await voiceChannel.join();
+            const stream  = ytdl(args[0], {filter: 'audioonly'});
+ 
+            connection.play(stream, {seek: 0, volume: 1})
+            .on('finish', () =>{
+                voiceChannel.leave();
+                message.channel.send('leaving channel');
+            });
+ 
+            await message.reply(`👍 Now Playing ***Your Link!***`)
+ 
+            return
+        }
+
         const connection = await voiceChannel.join();
 
         const videoFinder = async (query) => {
