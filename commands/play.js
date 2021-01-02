@@ -1,7 +1,7 @@
 const ytdl = require('ytdl-core');
 const ytSearch = require('yt-search');
 
-module.export = {
+module.exports = {
     name: 'play',
     description: 'Plays music from a youtube video',
     async execute(message, args){
