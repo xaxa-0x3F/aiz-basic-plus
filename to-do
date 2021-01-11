@@ -77,6 +77,7 @@ client.on('messageReactionRemove', async (reaction, user, message) => {
     }
 });
 
+//"mongoPath": "mongodb://localhost:27017",
 
 client.on('guildMemberAdd', guildMember =>{
     guildMember.guild.channels.cache.get('785642283919474708').send(`Welcome <@${guildMember.user.id}> to our server!`);

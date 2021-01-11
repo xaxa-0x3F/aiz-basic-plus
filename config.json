@@ -1,5 +1,5 @@
 {
-    "token": "Nzg0OTk0NTU3NDg5MTg0Nzc5.X8xZJg.3IaX5nEiPWbLqw4VHgDUYl8Ybxk",
+    "token": "Nzg0OTk0NTU3NDg5MTg0Nzc5.X8xZJg.TEaYgpwWLgQq1W6irzJ7avlc2E0",
     "prefix": "+",
-    "mongoPath": "mongodb://localhost:27017"
+    "mongoURI": "mongodb+srv://asuna:65899_Bh@cluster0.qzhlg.mongodb.net/AizBasic?retryWrites=true&w=majority"
 }
