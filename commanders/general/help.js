@@ -174,7 +174,7 @@ module.exports = class Help extends BaseCommand {
 
                     const commandEmbed = new MessageEmbed()
                         .setAuthor(`${command.name} Help`, message.author.displayAvatarURL({ format: "png" }))
-                        .setColor("RED")
+                        .setColor("#FFC0CB")
                         .setDescription(
                             `Name: ${command.name}
                             Aliases: ${command.aliases.length < 1 ? "None" : command.aliases.join(", ")}

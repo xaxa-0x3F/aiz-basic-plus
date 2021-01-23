@@ -1,4 +1,6 @@
 const BaseCommand = require('../../BaseClasses/baseCommand');
+const usedCommand = new Set();
+const Discord = require('discord.js');
 
 module.exports = class pfp extends BaseCommand {
     constructor(){
@@ -13,9 +15,20 @@ module.exports = class pfp extends BaseCommand {
     }
 
     async run(client, message, args){
-        let target = message.mentions.members.first(); 
-        message.channel.send(message.author.displayAvatarURL());
+        const usedEmbed = new Discord.MessageEmbed()
+        .setColor('RANDOM').setDescription(`You're on cooldown for the command`);
+        if(usedCommand.has(message.author.id)){
+            message.channel.send(usedEmbed);
+        } else {
+            let target = message.mentions.members.first(); 
+            message.channel.send(message.author.displayAvatarURL());
 
-        if(target) message.channel.send(target.displayAvatarURL());
+            if(target) message.channel.send(target.displayAvatarURL());
+
+            usedCommand.add(message.author.id);
+            setTimeout(() => {
+                usedCommand.delete(message.author.id);
+            }, 3000);
+        }
     }
 }

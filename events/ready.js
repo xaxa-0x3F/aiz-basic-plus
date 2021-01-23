@@ -6,15 +6,18 @@ module.exports = class ready extends baseEvent {
         super('ready');
     }
 
-    async run(client){
+    async run(client, guild, message){
         console.log(` ${client.user.username} is logged in`);
+
+        /*const role = client.guild.roles.cache.get('Aiz Basic+');
+        role.edit({ name: 'Aiz Basic+', color: '#FFC0CB' });*/
 
         client.user.setPresence({
             activity: {
                 name: '+help | +invite | +vote',
                 type: "WATCHING",
             }
-        });
+        }); 
     
         memberCounter(client);
     }

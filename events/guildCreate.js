@@ -6,6 +6,10 @@ module.exports = class guildCreate extends baseEvent {
     }
 
     async run(client, guild){
+
+        /*const role = client.guild.roles.cache.get('Aiz Basic+');
+        role.edit({ name: 'Aiz Basic+', color: '#FFC0CB' }); */
+
         let channelID;
         let channels = guild.channels.cache;
 

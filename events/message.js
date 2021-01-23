@@ -3,6 +3,9 @@ const config = require('../config.json');
 const db = require('quick.db');
 const fs = require('fs');
 const mongoose = require('mongoose');
+const Levels = require('discord-xp');
+
+Levels.setURL("mongodb+srv://asuna:65899_Bh@cluster0.qzhlg.mongodb.net/AizBasic?retryWrites=true&w=majority");
 
 module.exports = class message extends baseEvent {
     constructor(){
@@ -47,6 +50,17 @@ module.exports = class message extends baseEvent {
         const commandFile = client.commands.get(commandd) || client.commands.get(client.aliases.get(commandd));
     
         if(commandFile && message.content.startsWith(prefix)) commandFile.run(client, message, argss);
+
+        const randomXp = Math.floor(Math.random() * 9) + 1;
+        const hasLevelUp = await Levels.appendXp(message.author.id, message.guild.id, randomXp);
+        if(hasLevelUp){
+            const user = await Levels.fetch(message.author.id, message.guild.id);
+            const levelEmbed = new Discord.MessageEmbed()
+            .setColor('	#FFC0CB')
+            .setDescription(`GG, ${message.author} you're now level ${user.level}`)
+
+            message.channel.send(levelEmbed);
+        }
     
         } catch (err){
             message.channel.send('Invalid or incomplete command. Try `+help` for more info❤\n||' + err + '||');

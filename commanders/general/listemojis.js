@@ -14,6 +14,7 @@ module.exports = class listemojis extends BaseCommand {
     }
 
     async run(client, message, args){
+        if(message.member.permissions.has('ADMIN')){
         const newEmbed = new Discord.MessageEmbed()
         .setColor('#FFB6C1')
         .setDescription('You have no cutom server emotes.')
@@ -24,5 +25,6 @@ module.exports = class listemojis extends BaseCommand {
         } catch(err){
             message.channel.send(newEmbed);
         }
+    }
     }
 }
