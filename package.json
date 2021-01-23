@@ -11,6 +11,7 @@
   "dependencies": {
     "@discordjs/opus": "^0.3.3",
     "atob": "^2.1.2",
+    "discord-xp": "^1.1.7",
     "discord.js": "^12.5.1",
     "discord.js-pagination": "^1.0.3",
     "ffmpeg-static": "^4.2.7",
