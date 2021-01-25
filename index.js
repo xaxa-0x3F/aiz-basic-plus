@@ -12,6 +12,14 @@ const registerCmds = new RegisterCommands('./commanders', ['general', 'moderatio
 const RegisterEvents = require('./Registry/registerEvents');
 const registerEvents = new RegisterEvents('./events', client);
 
+const express = require('express');
+const app = express();
+const port = 3000;
+
+app.get('/', (req, res) => res.send('Hello World!'));
+
+app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`));
+
 require('./database/database');
 
 registerEvents.init();

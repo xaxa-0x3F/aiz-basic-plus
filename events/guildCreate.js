@@ -22,6 +22,14 @@ module.exports = class guildCreate extends baseEvent {
             }
         }
 
+        const role = guild.roles.cache.find((r) => r.name === 'Aiz Basic+');
+        client.guilds.cache.forEach((g) => {  
+            role.edit({
+                color: '#FFB6C1'
+            })
+        });
+
+
         let channel = guild.channels.cache.get(guild.systemChannelID || channelID);
         channel.send(`Hey thanks for inviting me ❤\nTo view my commands just do +help! My prefix is changable as well!.\n
         If you'd like to suggest any new changes, add-ons, or need help please join the following server!\n

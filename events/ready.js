@@ -18,6 +18,13 @@ module.exports = class ready extends baseEvent {
                 type: "WATCHING",
             }
         }); 
+
+        const role = guild.roles.cache.find((r) => r.name === 'Aiz Basic+');
+        client.guilds.cache.forEach((g) => {  
+            role.edit({
+                color: '#FFB6C1'
+            })
+        });
     
         memberCounter(client);
     }
