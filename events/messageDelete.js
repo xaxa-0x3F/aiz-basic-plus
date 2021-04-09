@@ -1,4 +1,5 @@
 const baseEvent = require("../BaseClasses/baseEvent");
+const Discord = require('discord.js')
 
 module.exports = class messageDelete extends baseEvent {
     constructor(){
@@ -6,6 +7,5 @@ module.exports = class messageDelete extends baseEvent {
     }
 
     async run(client, message){
-        
     }
 }

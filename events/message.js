@@ -12,7 +12,7 @@ module.exports = class message extends baseEvent {
         super('message');
     }
 
-    async run(client, message){
+    async run(client, message, guild){
         if(message.guild === null || message.guild === undefined){
             return;
         } 
@@ -32,12 +32,23 @@ module.exports = class message extends baseEvent {
         for(var i in blacklisted){
             if(message.content.toLowerCase().includes(blacklisted[i].toLowerCase())) foundInText = true;
         }
+
+        if(message.channel.id == '773052031849070624'){
+          if(message.content.toLowerCase()!='i agree'){
+            message.delete();
+          } else if(message.content.toLowerCase() == 'i agree') {
+            message.member.roles.remove('785142527518310420');
+            message.member.roles.add('773052031514312705');
+            message.delete();
+          }
+        }
+
         if(foundInText){
             message.delete();
             message.reply('You are not allowed to say that.');
         }
         
-        var prefix = db.fetch(`${message.guild.id}prefix`) || prefix;
+        var prefix = db.fetch(`${message.guild.id}prefix`)|| prefix;
         if(prefix === null||prefix===undefined){
             prefix = '+';
         }
@@ -45,21 +56,17 @@ module.exports = class message extends baseEvent {
         if(!message.content.startsWith(prefix) || message.author.bot) return;
         if(!message.member) message.member = await message.guild.fetchMember(mess);
     
-        const argss = message.content.slice(config.prefix.length).split(' ');
+        const argss = message.content.slice(prefix.length).split(' ');
         const commandd = argss.shift();
         const commandFile = client.commands.get(commandd) || client.commands.get(client.aliases.get(commandd));
     
         if(commandFile && message.content.startsWith(prefix)) commandFile.run(client, message, argss);
 
-        const randomXp = Math.floor(Math.random() * 9) + 1;
-        const hasLevelUp = await Levels.appendXp(message.author.id, message.guild.id, randomXp);
-        if(hasLevelUp){
-            const user = await Levels.fetch(message.author.id, message.guild.id);
-            const levelEmbed = new Discord.MessageEmbed()
-            .setColor('	#FFC0CB')
-            .setDescription(`GG, ${message.author} you're now level ${user.level}`)
-
-            message.channel.send(levelEmbed);
+        const randomAmountOfXp = Math.floor(Math.random() * 50) + 10; // Min 10, Max 50
+        const hasLeveledUp = await Levels.appendXp(message.author.id, message.guild.id, randomAmountOfXp);
+        if (hasLeveledUp) {
+          const user = await Levels.fetch(message.author.id, message.guild.id);
+          message.channel.send(`${message.author}, congratulations! You have leveled up to **${user.level}**. <3`);
         }
     
         } catch (err){

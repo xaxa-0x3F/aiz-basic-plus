@@ -9,22 +9,18 @@ module.exports = class ready extends baseEvent {
     async run(client, guild, message){
         console.log(` ${client.user.username} is logged in`);
 
-        /*const role = client.guild.roles.cache.get('Aiz Basic+');
-        role.edit({ name: 'Aiz Basic+', color: '#FFC0CB' });*/
+        let stateswitch = false;
 
-        client.user.setPresence({
-            activity: {
-                name: '+help | +invite | +vote',
-                type: "WATCHING",
-            }
-        }); 
+        client.user.setPresence({ status: "online" });
 
-        const role = guild.roles.cache.find((r) => r.name === 'Aiz Basic+');
-        client.guilds.cache.forEach((g) => {  
-            role.edit({
-                color: '#FFB6C1'
-            })
-        });
+        setInterval(() => {
+          stateswitch = !stateswitch; //change state
+          if (stateswitch) client.user.setActivity(`+help`, { type: "LISTENING" });
+          else client.user.setActivity(`${client.guilds.cache.reduce((c, g) => c + g.memberCount, 0)} Members | ${client.guilds.cache.size} Servers`, { type: "WATCHING" });
+        }, 5000); //5 second delay
+        
+        
+
     
         memberCounter(client);
     }

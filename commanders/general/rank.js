@@ -15,11 +15,20 @@ module.exports = class rank extends BaseCommand {
     }
 
     async run(client, message, args){
+        const target = message.mentions.members.first();
+        if(target){
+          const user = await Levels.fetch(target.id, message.guild.id);
+          const newEmbedd = new Discord.MessageEmbed()
+          .setColor('#FFB6C1')
+          .setDescription(`<@${target.id}> You are currently level **${user.level}**`);
+          message.channel.send(newEmbedd)
+        } else {
         const user = await Levels.fetch(message.author.id, message.guild.id);
         const newEmbed = new Discord.MessageEmbed()
         .setColor('#FFB6C1')
         .setDescription(`${message.author} You are currently level **${user.level}**`);
 
         message.channel.send(newEmbed);
+        }
     }
 }

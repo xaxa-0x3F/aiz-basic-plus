@@ -1,4 +1,4 @@
-const reactions = [
+const reaction = [
         {
             aliases: ["@everyone"],
             reactions: ['🇾', '🇪', '🇸', '❓'],
@@ -138,5 +138,5 @@ const reactions = [
 ];
 
 module.exports = {
-    reactions
+    reaction
 }

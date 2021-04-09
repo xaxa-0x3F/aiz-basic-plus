@@ -54,6 +54,7 @@ module.exports = class mute extends BaseCommand {
         }
 
         member.roles.add(muteRole.id);
+        member.send(`You have been muted in ${message.guild.name}`);
 
         try{
             await guild.updateOne(guild);

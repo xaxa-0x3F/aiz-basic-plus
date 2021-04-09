@@ -1,10 +1,11 @@
 const Discord = require('discord.js')
 const config = require('./config.json');
+const { DiscordUNO } = require('discord-uno');
 const client = new Discord.Client({
     ws: {
       intents: Discord.Intents.ALL
     }
-});
+}); 
 
 const RegisterCommands = require('./Registry/registerCommands');
 const registerCmds = new RegisterCommands('./commanders', ['general', 'moderation', 'music', 'games'], client);
@@ -24,6 +25,7 @@ require('./database/database');
 
 registerEvents.init();
 registerCmds.init();
+client.discordUNO = new DiscordUNO('#FFB6C1');
 client.commands = new Discord.Collection();
 client.commanders = new Discord.Collection();
 client.aliases = new Discord.Collection();

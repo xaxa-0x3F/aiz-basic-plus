@@ -15,20 +15,37 @@ module.exports = class pfp extends BaseCommand {
     }
 
     async run(client, message, args){
-        const usedEmbed = new Discord.MessageEmbed()
-        .setColor('RANDOM').setDescription(`You're on cooldown for the command`);
-        if(usedCommand.has(message.author.id)){
-            message.channel.send(usedEmbed);
-        } else {
-            let target = message.mentions.members.first(); 
-            message.channel.send(message.author.displayAvatarURL());
+        let user;
+        if (!args[0]) user = message.author;
+        if (args[0] && isNaN(args[0])) user = message.mentions.users.first();
+        if (args[0] && !isNaN(args[0])) {
+          user = client.users.cache.get(args[0]);
 
-            if(target) message.channel.send(target.displayAvatarURL());
-
-            usedCommand.add(message.author.id);
-            setTimeout(() => {
-                usedCommand.delete(message.author.id);
-            }, 3000);
+          if (!message.guild.members.cache.has(args[0]))
+            return message.reply(':x: User not found.');
         }
+
+        if (!user.avatarURL())
+          return message.reply(`:x: ${user.tag} profile photo not found.`);
+        let embed = new Discord.MessageEmbed()
+          .setColor('RANDOM')
+          .setDescription(
+            `[PNG](${user.avatarURL({
+              format: 'png'
+            })}) **|** [JPG](${user.avatarURL({
+              format: 'jpg'
+            })}) **|** [WEBP](${user.avatarURL({ format: 'webp' })})`
+          )
+          .setImage(user.avatarURL({ dynamic: true }) + '?size=2048') //Size :D
+          .setTimestamp()
+          .setAuthor(user.tag, user.avatarURL());
+
+        message.channel.send(embed);
+        /*const user = message.mentions.users.first() || message.author;
+        const avatarEmbed = new Discord.MessageEmbed()
+        .setColor('#FFB6C1')
+        .setAuthor(user.username)
+        .setImage(user.displayAvatarURL());
+        message.channel.send(avatarEmbed); */
     }
 }

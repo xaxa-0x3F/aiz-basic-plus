@@ -18,7 +18,6 @@ module.exports = class listemojis extends BaseCommand {
         const newEmbed = new Discord.MessageEmbed()
         .setColor('#FFB6C1')
         .setDescription('You have no cutom server emotes.')
-        message.channel.send(newEmbed);
         try{
             const emojiList = message.guild.emojis.cache.map(e=>e.toString()).join(" ");
             message.channel.send(emojiList, {split: {char: ' ' }});

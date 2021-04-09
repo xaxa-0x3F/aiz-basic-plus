@@ -1,6 +1,6 @@
 const db = require('quick.db');
 const BaseCommand = require('../../BaseClasses/baseCommand');
-const Discord = require('discord.js');
+const Discord = require('discord.js')
 
 module.exports = class prefix extends BaseCommand {
     constructor(){
@@ -22,7 +22,7 @@ module.exports = class prefix extends BaseCommand {
                 .setDescription(`You need to define the prefix ❤`)
 
                 message.reply(newEmbedd);
-            } else{
+            } else {
             db.set(`${message.guild.id}prefix`, args[0])
             const newEmbeddd = new Discord.MessageEmbed()
             .setColor('#FFB6C1')

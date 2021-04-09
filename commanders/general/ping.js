@@ -22,6 +22,7 @@ module.exports = class ping extends BaseCommand {
             {name: 'pong', value: 'pong'}
         )
         .setThumbnail('https://thumbs.gfycat.com/DaringDimwittedFlyingsquirrel-max-1mb.gif')
+        .setImage()
         .setFooter('hehheheheheh<3');
 
         message.channel.send(newEmbed);

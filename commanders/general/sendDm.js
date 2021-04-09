@@ -1,9 +1,10 @@
 const BaseCommand = require('../../BaseClasses/baseCommand');
+const usedCommand = new Set();
 
 module.exports = class dm extends BaseCommand {
     constructor(){
         super({
-            aliases: ['sendDm'],
+            aliases: ['dm'],
             description: "Sends resources on how to make a discord.js bot.",
             name: 'sendDm',
             permissions: ['SEND_MESSAGES'],
@@ -13,16 +14,11 @@ module.exports = class dm extends BaseCommand {
     }
 
     async run(client, message, args){
-        let target = message.mentions.users.first();
-        target.send(args.slice(0).join(' '));
-
         if(usedCommand.has(message.author.id)){
             message.channel.send(usedEmbed);
         } else {
-            let target = message.mentions.users.first();
-            
-            if(!target) message.member.send(args.slice(0).join(' '));
-            else if(target) target.send(args.slice(0).join(' '));
+            let target = message.mentions.users.first() ||message.author;
+            target.send(args.slice(0).join(' '));
 
             usedCommand.add(message.author.id);
             setTimeout(() => {

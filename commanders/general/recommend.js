@@ -15,11 +15,12 @@ module.exports = class recommend extends BaseCommand {
 
     async run(client, message, args){
         const channelToSend = message.guild.channels.cache.find(channel => channel.name === '👍-recommendations');
-        const Author = message.author.tag;        ;
+        const Author = message.author;        ;
         const newEmbed = new Discord.MessageEmbed()
         .setColor('#FFB6C1')
-        .setTitle(`${Author}'s Recommendation:`)
-        .setDescription(args.slice(0).join(' '));
+        .setTitle(`Server Recommendation:`)
+        .setDescription(args.slice(0).join(' '))
+        .addField('Suggestion by:', `<@${Author.id}>`);
 
         const errorEmbed = new Discord.MessageEmbed()
         .setColor('#FFB6C1')

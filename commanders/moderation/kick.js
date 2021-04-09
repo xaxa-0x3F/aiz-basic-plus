@@ -26,6 +26,7 @@ module.exports = class kick extends BaseCommand {
                 const memberTarget = message.guild.members.cache.get(memberr.id);
                 const reasonn = args.slice(1).join(' ');
                 if(reasonn===undefined||reasonn===null) reasonn = 'No reason';
+                memberTarget.send(`You have been kicked from ${message.guild.name} \n Reason: ${reasonn}`);
                 memberTarget.kick({reason: reasonn});
                 const newEmbed = new Discord.MessageEmbed()
                 .setColor('#FFB6C1')

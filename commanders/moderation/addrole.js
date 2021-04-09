@@ -18,14 +18,14 @@ module.exports = class addrole extends BaseCommand {
             let target = message.mentions.members.first(); 
             if(target){
             let memberRoles = target.roles.cache;
-            let addRoler = message.mentions.roles.first();
+            let addRoler = message.mentions.roles.first() || message.guild.roles.cache.get(args[1]);
             let memberTarget = message.guild.members.cache.get(target.id);
 
             memberTarget.roles.add(addRoler.id);
 
             message.channel.send({embed: {
               color: '#FFB6C1',
-              description: `<@${memberTarget.user.id}> has been given the ${args[1]} role.`
+              description: `<@${memberTarget.user.id}> has been given the <@&${args[1]}> role.`
             }});
             } else {
             message.channel.send('User or role not found.');

@@ -24,9 +24,7 @@ module.exports = class userInfo extends BaseCommand {
             .addField('Hash', `${target.user.tag}`, true)
             .addField('ID', `${target.user.id}`, true)
             .addField('Account Created', `${target.user.createdAt}`, true)
-            .addField('Join Position', `**${target.guild.memberCount}**`, true)
-            /*.addField('Invited By', `<@${target.usedInvite.inviter.id}>`, true)
-            .addField('Invite Uses', `${target.usedInvite.uses}`, true)*/
+            .addField('Join Date', `${target.joinedAt}`, true)
             .setTimestamp()
             message.channel.send(uuBed);
         } else {
@@ -37,7 +35,7 @@ module.exports = class userInfo extends BaseCommand {
             .addField('Hash', `${message.member.user.tag}`, true)
             .addField('ID', `${message.member.user.id}`, true)
             .addField('Account Created', `${message.member.user.createdAt}`, true)
-            .addField('Join Position', `**${message.member.guild.memberCount}**`, true)
+            .addField('Join Date', `${message.member.joinedAt}`, true)
             /*.addField('Invited By', `<@${message.member.usedInvite.inviter.id}>`, true)
             .addField('Invite Uses', `${message.member.usedInvite.uses}`, true) */
             .setTimestamp()

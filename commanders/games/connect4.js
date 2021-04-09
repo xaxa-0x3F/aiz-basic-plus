@@ -22,9 +22,6 @@ module.exports = class connect4 extends BaseCommand {
         const youEmbed = new Discord.MessageEmbed()
         .setColor('#FFB6C1').setDescription('You cannot play connect for with yourself :(');
 
-        if(opponent == challenger){
-         message.channel.send(youEmbed)
-        } else {
         const opEmbed = new MessageEmbed()
         .setDescription("Please tag someone you'd like to play against");
         if(!opponent) return message.channel.send(opEmbed);
@@ -231,6 +228,5 @@ module.exports = class connect4 extends BaseCommand {
                 }
             });
         }
-        }
-    }
+      }
 }
