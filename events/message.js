@@ -43,6 +43,24 @@ module.exports = class message extends baseEvent {
           }
         }
 
+        //ETERNAL SWITCHING METHODS
+        const visitC = '790890027499782185'
+        const accC = '793309371874017331';
+        const remixC = ''
+
+        if(message.channel.id == '791574713050464256'){
+          if(message.content.toLowerCase().includes('visit')) {
+            client.channels.cache.get(visitC).send(message.content);
+            message.delete();
+          } else if(message.content.toLowerCase().includes('username')) {
+            client.channels.cache.get(accC).send(message.content);
+            message.delete();
+          }  else if(message.content.toLowerCase().includes('remix')) {
+            client.channels.cache.get(remixC).send(message.content);
+            message.delete();
+          }
+        }
+
         if(foundInText){
             message.delete();
             message.reply('You are not allowed to say that.');
@@ -53,7 +71,7 @@ module.exports = class message extends baseEvent {
             prefix = '+';
         }
     
-        if(!message.content.startsWith(prefix) || message.author.bot) return;
+        if(!message.content.startsWith(prefix)) return;
         if(!message.member) message.member = await message.guild.fetchMember(mess);
     
         const argss = message.content.slice(prefix.length).split(' ');
