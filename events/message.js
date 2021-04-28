@@ -18,7 +18,7 @@ module.exports = class message extends baseEvent {
         } 
     
         if(message.channel.type === "dm") return;
-        
+        if (message.author.bot) return;
         /*
         var reactionz = db.fetch(`${message.guild.id}reactionz`);
         if(reactionz == null || reactionz == undefined) { reactionz = 'on' };
@@ -78,7 +78,13 @@ module.exports = class message extends baseEvent {
         const commandd = argss.shift();
         const commandFile = client.commands.get(commandd) || client.commands.get(client.aliases.get(commandd));
     
-        if(commandFile && message.content.startsWith(prefix)) commandFile.run(client, message, argss);
+        if(commandFile && message.content.startsWith(prefix)){ 
+          const permissions = commandFile.permissions;
+          for (const permission of permissions) {
+                if (!message.member.permissions.has(permission)) return message.reply("You do not have permission to run the command.");
+          }
+          commandFile.run(client, message, argss);
+          }
 
         const randomAmountOfXp = Math.floor(Math.random() * 50) + 10; // Min 10, Max 50
         const hasLeveledUp = await Levels.appendXp(message.author.id, message.guild.id, randomAmountOfXp);

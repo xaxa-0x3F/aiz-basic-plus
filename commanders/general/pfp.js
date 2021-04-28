@@ -34,7 +34,11 @@ module.exports = class pfp extends BaseCommand {
               format: 'png'
             })}) **|** [JPG](${user.avatarURL({
               format: 'jpg'
-            })}) **|** [WEBP](${user.avatarURL({ format: 'webp' })})`
+            })}) **|** [WEBP](${user.avatarURL({ 
+              format: 'webp' 
+            })}) **|** [GIF](${user.avatarURL({
+              format: 'gif'
+            })})`
           )
           .setImage(user.avatarURL({ dynamic: true }) + '?size=2048') //Size :D
           .setTimestamp()

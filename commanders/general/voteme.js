@@ -18,7 +18,7 @@ module.exports = class voteme extends BaseCommand {
         .setColor('#FFB6C1')
         .setTitle('Thanks for considering voting!')
         .addFields(
-            {name: 'Vote here: ', value: 'https://top.gg/bot/784994557489184779'}
+            {name: 'Vote here: ', value: 'https://top.gg/bot/784994557489184779/vote'}
         )
         .setThumbnail('https://img-9gag-fun.9cache.com/photo/aoNeYKA_460swp.webp')
         .setFooter('Voting supports the bot greatly.');
