@@ -22,11 +22,11 @@ module.exports = class pfp extends BaseCommand {
           user = client.users.cache.get(args[0]);
 
           if (!message.guild.members.cache.has(args[0]))
-            return message.reply(':x: User not found.');
+            return message.reply(':x: User not found.').then(msg => { msg.delete({ timeout: 3000 })}).catch(console.error);
         }
 
         if (!user.avatarURL())
-          return message.reply(`:x: ${user.tag} profile photo not found.`);
+          return message.reply(`:x: ${user.tag} profile photo not found.`).then(msg => { msg.delete({ timeout: 3000 })}).catch(console.error);
         let embed = new Discord.MessageEmbed()
           .setColor('RANDOM')
           .setDescription(
@@ -45,11 +45,5 @@ module.exports = class pfp extends BaseCommand {
           .setAuthor(user.tag, user.avatarURL());
 
         message.channel.send(embed);
-        /*const user = message.mentions.users.first() || message.author;
-        const avatarEmbed = new Discord.MessageEmbed()
-        .setColor('#FFB6C1')
-        .setAuthor(user.username)
-        .setImage(user.displayAvatarURL());
-        message.channel.send(avatarEmbed); */
     }
 }

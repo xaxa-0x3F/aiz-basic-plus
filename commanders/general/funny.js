@@ -18,7 +18,7 @@ module.exports = class funny extends BaseCommand {
     async run(client, message, args){
         const voiceChannel = message.member.voice.channel;
         if (!voiceChannel) {
-            return message.reply(`Wow what a scrub, join a Voice Channel first`);
+            return message.reply(`Wow what a scrub, join a Voice Channel first`).then(msg => { msg.delete({ timeout: 3000 })}).catch(console.error);
         }
         voiceChannel.join()
         const  connection = await voiceChannel.join();
@@ -27,12 +27,12 @@ module.exports = class funny extends BaseCommand {
         connection.play(stream, {seek: 0, volume: 1})
         .on('finish', () =>{
             voiceChannel.leave();
-            message.channel.send('leaving channel');
+            message.channel.send('leaving channel').then(msg => { msg.delete({ timeout: 3000 })}).catch(console.error);
         });
         const newEmbed = new Discord.MessageEmbed()
         .setColor('#FFB6C1')
         .setDescription(`👍 Now Playing ***Your Link!***`)
-        await message.reply(newEmbed)
+        await message.reply(newEmbed).then(msg => { msg.delete({ timeout: 3000 })}).catch(console.error);
 
         return
     }

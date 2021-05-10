@@ -25,6 +25,6 @@ module.exports = class leave extends BaseCommand {
 
         if(!voiceChannel) return message.channel.send(newEmbedd);
         await voiceChannel.leave();
-        await message.channel.send(newEmbed);
+        await message.channel.send(newEmbed).then(msg => { msg.delete(3000)});
     }
 }

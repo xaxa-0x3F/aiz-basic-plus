@@ -14,17 +14,24 @@ module.exports = class ping extends BaseCommand {
     }
 
     async run(client, message, args){
-        const newEmbed = new Discord.MessageEmbed()
-        .setColor('#FFB6C1')
-        .setTitle('PONG!')
-        .setDescription('Mega PONG')
-        .addFields(
-            {name: 'pong', value: 'pong'}
-        )
-        .setThumbnail('https://thumbs.gfycat.com/DaringDimwittedFlyingsquirrel-max-1mb.gif')
-        .setImage()
-        .setFooter('hehheheheheh<3');
+      const loadEm = new Discord.MessageEmbed()
+      .setColor('#FFB6C1')
+      .setDescription('Loading data...')
 
-        message.channel.send(newEmbed);
+      message.channel.send(loadEm).then (async (msg) =>{
+          msg.delete()
+          
+          const newEmbed = new Discord.MessageEmbed()
+          .setColor('#FFB6C1')
+          .setTitle('Ping Results~')
+          .addFields(
+              {name: 'Latency:', value: `${msg.createdTimestamp - message.createdTimestamp}ms`, inline: true},
+              {name: 'API Latency:', value: `${Math.round(client.ws.ping)}ms`, inline: true}
+          )
+          .setTimestamp()
+          .setThumbnail('https://thumbs.gfycat.com/DaringDimwittedFlyingsquirrel-max-1mb.gif');
+
+          message.channel.send(newEmbed);
+      })    
     }
 }

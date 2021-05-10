@@ -14,24 +14,15 @@ module.exports = class uptime extends BaseCommand {
     }
 
     async run(client, message, args){ 
-        let totalSeconds = (client.uptime / 1000);
-        let days = Math.floor(totalSeconds / 86400);
-        totalSeconds %= 86400;
-        let hours = Math.floor(totalSeconds / 3600);
-        totalSeconds %= 3600;
-        let minutes = Math.floor(totalSeconds / 60);
-        let seconds = Math.floor(totalSeconds % 60);
-        let uptime = `${days} days, ${hours} hours, ${minutes} minutes and ${seconds} seconds`;
+        const moment = require("moment");
+        require("moment-duration-format");
+        const duration = moment.duration(client.uptime).format(" D [days], H [hrs], m [mins], s [secs]");
 
         const emb = new Discord.MessageEmbed()
         .setColor('#FFB6C1')
         .setTitle("Aiz's Uptime")
-        .addFields(
-          { name: 'Days:', value: `${days}`, inline: true },
-          { name: 'Hours:', value: `${hours}`, inline: true },
-          { name: 'Minutes:', value: `${minutes}`, inline: true },
-          { name: 'Seconds', value: `${seconds}`, inline: true}
-        )
+        .setDescription(duration)
+        .setThumbnail('https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fibpspo2016result.com%2Fpics%2Faiz-wallenstein.png&f=1&nofb=1')
         .setTimestamp();
 
         message.channel.send(emb);

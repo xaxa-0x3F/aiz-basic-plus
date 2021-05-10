@@ -36,8 +36,6 @@ module.exports = class userInfo extends BaseCommand {
             .addField('ID', `${message.member.user.id}`, true)
             .addField('Account Created', `${message.member.user.createdAt}`, true)
             .addField('Join Date', `${message.member.joinedAt}`, true)
-            /*.addField('Invited By', `<@${message.member.usedInvite.inviter.id}>`, true)
-            .addField('Invite Uses', `${message.member.usedInvite.uses}`, true) */
             .setTimestamp()
             message.channel.send(uBed);
         }

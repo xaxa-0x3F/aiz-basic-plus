@@ -28,14 +28,14 @@ module.exports = class prefix extends BaseCommand {
             .setColor('#FFB6C1')
             .setDescription('My prefix is now `' + args[0] + '`    👏 👏 👏')
 
-            return message.reply(newEmbeddd) 
+            return message.reply(newEmbeddd).then(msg => { msg.delete({ timeout: 3000 })}).catch(console.error);
             }
             } else {
                 const newEmbed = new Discord.MessageEmbed()
                 .setColor('#FFB6C1')
                 .setDescription(`You must be an admin to change the prefix 😢`)
 
-                message.channel.send(newEmbed);
+                message.channel.send(newEmbed).then(msg => { msg.delete({ timeout: 3000 })}).catch(console.error);
         }
     }
 }

@@ -27,7 +27,7 @@ module.exports = class unmute extends BaseCommand {
         const successEm = new Discord.MessageEmbed()
         .setDescription(`${member.user.tag} was successfully un-muted`);
 
-        if(!member) return message.channel.send(mentEm)
+        if(!member) return message.channel.then(msg => { msg.delete({ timeout: 3000 })}).catch(console.error);
 
         let guild = await Guild.findOne({guildId: message.guild.id});
         if(!guild) guild = await Guild.create({guildId: message.guild.id});
@@ -49,10 +49,10 @@ module.exports = class unmute extends BaseCommand {
         try{
             await guild.updateOne(guild);
         }catch{
-            return message.channel.send(dbEm)
+            return message.channel.send(dbEm).then(msg => { msg.delete({ timeout: 3000 })}).catch(console.error);
         }
 
-        return message.channel.send(successEm);
+        return message.channel.send(successEm).then(msg => { msg.delete({ timeout: 3000 })}).catch(console.error);
     }
     }
 }

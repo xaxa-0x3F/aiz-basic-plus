@@ -76,8 +76,8 @@ module.exports = class Help extends BaseCommand {
 
                     if (pageType === "home") {
                         if (page !== 0) page--;
-                    } else if (pageType === "commands") {
-                        if (commandPage !== 0) commandPage--;
+                    } else if (pageType == "commands") {
+                        if (commandPage != 0) commandPage--;
                     }
 
                 break;
@@ -102,8 +102,8 @@ module.exports = class Help extends BaseCommand {
                 case "➡️":
                     if (pageType === "home") {
                         if (page !== pages.length - 1) page++;
-                    } else if (pageType === "commands") {
-                        if (commandPage !== cmdPages.length - 1) commandPage++;
+                    } else if (pageType == "commands") {
+                        if (commandPage != cmdPages.length - 1) commandPage++;
                     }
                 break;
                 case "❌":

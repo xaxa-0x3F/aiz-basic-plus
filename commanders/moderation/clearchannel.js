@@ -21,7 +21,8 @@ module.exports = class clearchannel extends BaseCommand {
             const newEmbed = new Discord.MessageEmbed()
             .setColor('#FFB6C1')
             .setDescription(`deleting as many messages as I can ❤`)
-            message.channel.send(newEmbed);
+            message.channel.send(newEmbed).then(msg => { msg.delete({ timeout: 3000 })}).catch(console.error);
+
         } else {
             return;
         }

@@ -23,12 +23,12 @@ module.exports = class warn extends BaseCommand {
         .setColor('RANDOM').setDescription(`${message.author.tag} you are not allowed to use this command :(`);
 
         if(usedCommand.has(message.author.id)){
-            message.channel.send(usedEmbed);
+            message.channel.send(usedEmbed).then(msg => { msg.delete({ timeout: 3000 })}).catch(console.error);
         } else { 
             const toWarn = message.mentions.users.first() || message.guild.members.cache.get(args[0]);
 
             if(!message.member.hasPermission("KICK_MEMBERS")) {
-                return message.channel.send(noUse);
+                return message.channel.send(noUse).then(msg => { msg.delete({ timeout: 3000 })}).catch(console.error);
             }
 
             if(message.author.id === toWarn.id) return;

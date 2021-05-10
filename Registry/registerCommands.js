@@ -1,6 +1,6 @@
 const readdir = require("readdir-plus");
 
-module.exports = class Register {
+module.exports = class RegisterCommands {
     
     mainDir;
     subFolders;
@@ -21,7 +21,6 @@ module.exports = class Register {
                 for (const file of files) {
 
                     const CommandFile = require(file.path);
-
                     const Command = new CommandFile();
 
                     this.client.commands.set(Command.name, Command);
@@ -34,3 +33,4 @@ module.exports = class Register {
         }
     }
 }
+

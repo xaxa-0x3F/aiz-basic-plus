@@ -1,12 +1,12 @@
 const BaseCommand = require('../../BaseClasses/baseCommand');
 const Discord = require('discord.js');
 
-module.exports = class recommend extends BaseCommand {
+module.exports = class recommendemoji extends BaseCommand {
     constructor(){
         super({
-            aliases: ['suggest'],
+            aliases: ['recE', 'reccomende', 'suggestemoji', 'suggeste'],
             description: "Suggest a new feature for me, or for the support server!",
-            name: 'recommend',
+            name: 'recommendemoji',
             permissions: ['SEND_MESSAGES'],
             usage: '`+recommend <message>`',
             category: 'general'
@@ -18,38 +18,25 @@ module.exports = class recommend extends BaseCommand {
         const Author = message.author;        ;
         const newEmbed = new Discord.MessageEmbed()
         .setColor('#FFB6C1')
-        .setTitle(`Server Recommendation:`)
+        .setTitle(`Emoji Recommendation:`)
         .setDescription(args.slice(0).join(' '))
-        .setAuthor(message.author.tag, message.author.avatarURL())
+        .setAuthor(message.author.tag, message.author.avatarURL());
 
         const errorEmbed = new Discord.MessageEmbed()
         .setColor('#FFB6C1')
-        .setDescription('You need to reccomend something.');
+        .setTitle('Uh oh!')
+        .setDescription('You need to have a link or file');
 
         const sentEmbed = new Discord.MessageEmbed()
         .setColor('RANDOM')
-        .setDescription('Recommendation sent! Thank you.');
+        .setDescription('Emoji Recommendation Sent!');
 
-        try {
-          gogo();
-        } catch(e) {
-          
-        } 
-
-      async function gogo() {
-        if(message.length <= '0' || message.content == null || message.content == undefined){
+        if(message.length <= '0' || message == null || message == undefined){
             message.channel.send(errorEmbed).then(msg => { msg.delete({ timeout: 3000 })}).catch(console.error);
         } else{
-          message.channel.send(sentEmbed);
-          const question = await channelToSend.send(newEmbed); 
+            const question = await channelToSend.send(newEmbed); 
 
-          let ryC = 0;
-
-          let rnC = 0;
-
-
-          ['👍', '👎'].forEach(async el => await question.react(el)); 
-      }
+            ['👍', '👎'].forEach(async el => await question.react(el)); 
+        }
     }
-  }
 }

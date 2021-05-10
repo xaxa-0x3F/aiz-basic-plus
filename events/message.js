@@ -4,6 +4,7 @@ const db = require('quick.db');
 const fs = require('fs');
 const mongoose = require('mongoose');
 const Levels = require('discord-xp');
+const Discord = require('discord.js')
 
 Levels.setURL("mongodb+srv://asuna:65899_Bh@cluster0.qzhlg.mongodb.net/AizBasic?retryWrites=true&w=majority");
 
@@ -69,6 +70,13 @@ module.exports = class message extends baseEvent {
         var prefix = db.fetch(`${message.guild.id}prefix`)|| prefix;
         if(prefix === null||prefix===undefined){
             prefix = '+';
+        }
+
+        if(message.content == client.user.id){
+          const newEmbed = new Discord.MessageEmbed()
+          .setColor('#FFB6C1')
+          .setDescription(`<a:bop:788861894756532236>~**My current prefix is:**   ` + "`" + `${prefix}` + "`");
+          message.channel.send(newEmbed);
         }
     
         if(!message.content.startsWith(prefix)) return;

@@ -18,11 +18,11 @@ module.exports = class play extends BaseCommand {
     async run(client, message, args){
         const voiceChannel = message.member.voice.channel;
 
-        if(!voiceChannel) return message.channel.send('You need to be in a voice channel to use this command ❤')
+        if(!voiceChannel) return message.channel.send('You need to be in a voice channel to use this command ❤').then(msg => { msg.delete(3000)});
         const permissions = voiceChannel.permissionsFor(message.client.user);
-        if(!permissions.has('CONNECT')) return message.channel.send('You are not allowed to use this command ❤')
-        if(!permissions.has('SPEAK')) return message.channel.send('You are not allowed to use this command ❤')
-        if(!args.length) return message.channel.send('You need to define play ❤')
+        if(!permissions.has('CONNECT')) return message.channel.send('You are not allowed to use this command ❤').then(msg => { msg.delete(3000)});
+        if(!permissions.has('SPEAK')) return message.channel.send('You are not allowed to use this command ❤').then(msg => { msg.delete(3000)});
+        if(!args.length) return message.channel.send('You need to define play ❤').then(msg => { msg.delete(3000)});
     
         const validURL = (str) =>{
             var regex = /(http|https):\/\/(\w+:{0,1}\w*)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%!\-\/]))?/;
@@ -41,12 +41,12 @@ module.exports = class play extends BaseCommand {
             connection.play(stream, {seek: 0, volume: 1})
             .on('finish', () =>{
                 voiceChannel.leave();
-                message.channel.send('leaving channel');
+                message.channel.send('leaving channel').then(msg => { msg.delete(3000)});
             });
             const newEmbed = new Discord.MessageEmbed()
             .setColor('#FFB6C1')
             .setDescription(`👍 Now Playing ***Your Link!***`)
-            await message.reply(newEmbed)
+            await message.reply(newEmbed).then(msg => { msg.delete(3000)});
  
             return
         }
@@ -69,9 +69,9 @@ module.exports = class play extends BaseCommand {
             const newEmbed = new Discord.MessageEmbed()
             .setColor('#FFB6C1')
             .setDescription(`👍 Now playing ***${video.title}***`)
-            await message.reply(newEmbed);
+            await message.reply(newEmbed).then(msg => { msg.delete(3000)});
         } else {
-            message.channel.send('No results found 😢');
+            message.channel.send('No results found 😢').then(msg => { msg.delete(3000)});
         }
     }
 }

@@ -24,10 +24,18 @@ module.exports = class mute extends BaseCommand {
 
         const member = message.mentions.members.first() || message.guild.cache.get(args[0]);
 
+        if(message.author.hasPermission('MUTE_MEMBERS'), {checkOwner: false}){
+          if(member.bot) return message.reply('You are not allowed to mute bots <a:reee:788865883404763186>');
+
+          if(message.author.hasPermission('MUTE_MEMBERS',{ checkAdmin : false }) && member.hasPermission('ADMIN')){
+            return message.reply('You are not allowed to mute members above you <a:reee:788865883404763186>');
+          }
+        }
+
         const successEm = new Discord.MessageEmbed()
         .setDescription(`${member.user.tag} was successfully muted`);
 
-        if(!member) return message.channel.send(mentEm)
+        if(!member) return message.channel.send(mentEm).then(msg => { msg.delete({ timeout: 3000 })}).catch(console.error);
 
         let guild = await Guild.findOne({guildId: message.guild.id});
         if(!guild) guild = await Guild.create({guildId: message.guild.id});
@@ -59,10 +67,10 @@ module.exports = class mute extends BaseCommand {
         try{
             await guild.updateOne(guild);
         }catch{
-            return message.channel.send(dbEm)
+            return message.channel.send(dbEm).then(msg => { msg.delete({ timeout: 3000 })}).catch(console.error);
         }
 
-        return message.channel.send(successEm);
+        return message.channel.send(successEm).then(msg => { msg.delete({ timeout: 3000 })}).catch(console.error);
     }
     }
 }

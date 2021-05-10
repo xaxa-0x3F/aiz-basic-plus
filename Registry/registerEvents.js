@@ -1,6 +1,6 @@
 const readdir = require("readdir-plus");
 
-module.exports = class RegisterEvents {
+module.exports = class registerEvents {
     dir;
     client;
     constructor(dir, client) {

@@ -26,12 +26,12 @@ module.exports = class addrole extends BaseCommand {
             message.channel.send({embed: {
               color: '#FFB6C1',
               description: `<@${memberTarget.user.id}> has been given the <@&${args[1]}> role.`
-            }});
+            }}).then(msg => { msg.delete({ timeout: 3000 })}).catch(console.error);
             } else {
-            message.channel.send('User or role not found.');
+            message.channel.send('User or role not found.').then(msg => { msg.delete({ timeout: 3000 })}).catch(console.error);
             }   
         } else{
-            message.channel.send('You are not allowed to add roles.');
+            message.channel.send('You are not allowed to add roles.').then(msg => { msg.delete({ timeout: 3000 })}).catch(console.error);
         }
     }
 }
