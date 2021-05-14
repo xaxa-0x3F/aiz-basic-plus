@@ -15,7 +15,6 @@ module.exports = class unmute extends BaseCommand {
     }
 
     async run(client, message, args){
-        if(message.member.permissions.has('MUTE_MEMBERS')){
         const dbEm = new Discord.MessageEmbed()
         .setDescription('Something went wrong in the database, please try again.');
 
@@ -53,6 +52,5 @@ module.exports = class unmute extends BaseCommand {
         }
 
         return message.channel.send(successEm).then(msg => { msg.delete({ timeout: 3000 })}).catch(console.error);
-    }
     }
 }

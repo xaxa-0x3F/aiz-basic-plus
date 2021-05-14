@@ -22,13 +22,14 @@ module.exports = class starboard extends BaseCommand {
         .then(mm => {
           const newEmbed = new Discord.MessageEmbed()
             .setColor('#FFB6C1')
-            .setImage(mm.attachments.first().url)
             .setDescription(mm.content)
             .setAuthor(mm.author.tag, mm.author.avatarURL())
 
             const sentEmbed = new Discord.MessageEmbed()
             .setColor('RANDOM')
             .setDescription(`${args[0]}\nAdded to starboard.`);
+
+            //if()
 
             channelToSend.send(newEmbed);
             message.channel.send(sentEmbed).then(msg => { msg.delete({ timeout: 3000 })}).catch(console.error);

@@ -15,7 +15,6 @@ module.exports = class mute extends BaseCommand {
     }
 
     async run(client, message, args){
-        if(message.member.permissions.has('MUTE_MEMBERS')){
         const dbEm = new Discord.MessageEmbed()
         .setDescription('Something went wrong in the database, please try again.');
 
@@ -24,13 +23,8 @@ module.exports = class mute extends BaseCommand {
 
         const member = message.mentions.members.first() || message.guild.cache.get(args[0]);
 
-        if(message.author.hasPermission('MUTE_MEMBERS'), {checkOwner: false}){
-          if(member.bot) return message.reply('You are not allowed to mute bots <a:reee:788865883404763186>');
-
-          if(message.author.hasPermission('MUTE_MEMBERS',{ checkAdmin : false }) && member.hasPermission('ADMIN')){
-            return message.reply('You are not allowed to mute members above you <a:reee:788865883404763186>');
-          }
-        }
+        if(member.bot) return message.reply('You are not allowed to mute bots <a:reee:788865883404763186>');
+        
 
         const successEm = new Discord.MessageEmbed()
         .setDescription(`${member.user.tag} was successfully muted`);
@@ -73,4 +67,3 @@ module.exports = class mute extends BaseCommand {
         return message.channel.send(successEm).then(msg => { msg.delete({ timeout: 3000 })}).catch(console.error);
     }
     }
-}

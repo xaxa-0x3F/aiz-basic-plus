@@ -12,6 +12,7 @@
     "@discordjs/opus": "^0.3.3",
     "atob": "^2.1.2",
     "axios": "^0.21.1",
+    "discord-canvas": "^1.4.1",
     "discord-uno": "^2.0.21",
     "discord-xp": "^1.1.14",
     "discord.js": "^12.5.3",

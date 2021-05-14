@@ -37,6 +37,7 @@ module.exports = class message extends baseEvent {
         if(message.channel.id == '773052031849070624'){
           if(message.content.toLowerCase()!='i agree'){
             message.delete();
+            message.channel.send('Please type the exact phrase **i agree**').then(msg => { msg.delete({ timeout: 3000 })}).catch(console.error);
           } else if(message.content.toLowerCase() == 'i agree') {
             message.member.roles.remove('785142527518310420');
             message.member.roles.add('773052031514312705');

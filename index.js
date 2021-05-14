@@ -2,10 +2,10 @@ const Discord = require('discord.js')
 const config = require('./config.json');
 const { DiscordUNO } = require('discord-uno');
 const client = new Discord.Client({
-    ws: {
-      intents: Discord.Intents.ALL
-    }
-}); 
+	ws: {
+		intents: Discord.Intents.ALL
+	}
+});
 
 const RegisterCommands = require('./Registry/registerCommands');
 const registerCmds = new RegisterCommands('./commanders', ['general', 'moderation', 'music', 'games'], client);
@@ -17,9 +17,9 @@ const express = require('express');
 const app = express();
 const port = 3000;
 
-app.get('/', (req, res) => res.send('Hello World!'));
+app.get('/', (req, res) => res.send(`Live on Port:${port}`));
 
-app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`));
+app.listen(port, () => console.log(`Listening at http://localhost:${port}`));
 
 require('./database/database');
 

@@ -7,8 +7,7 @@ module.exports = class messageReactionAdd extends baseEvent {
     }
 
     async run(client, reaction){
-      const recChannel = '773052032151715846';
-      if(reaction.message.channel.id == recChannel){
+      if(reaction.message.channel.id == '773052032151715846'){
         if(reaction.message.embeds[0].title.includes('Recommendation')){
           let yC = reaction.message.reactions.cache.get('👍').count;
           let nC = reaction.message.reactions.cache.get('👎').count;
@@ -32,7 +31,7 @@ module.exports = class messageReactionAdd extends baseEvent {
               ).setFooter('**Recommendation Denied**');
 
               reaction.message.delete();
-              recChannel.send(deniedEmbed);
+              reaction.message.channel.send(deniedEmbed);
           }
         }
       }
